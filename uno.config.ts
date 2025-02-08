@@ -11,9 +11,6 @@ import {
 
 import { presetApplet, presetRemRpx, transformerAttributify } from 'unocss-applet'
 
-// @see https://unocss.dev/presets/legacy-compat
-// import { presetLegacyCompat } from '@unocss/preset-legacy-compat'
-
 const isMp = process.env?.UNI_PLATFORM?.startsWith('mp') ?? false
 
 const presets: Preset[] = []
@@ -76,14 +73,40 @@ export default defineConfig({
     ],
     ['pt-safe', { 'padding-top': 'env(safe-area-inset-top)' }],
     ['pb-safe', { 'padding-bottom': 'env(safe-area-inset-bottom)' }],
+    [
+      /^([pm])([xytrbl]?)-(\d+)$/,
+      ([, prop, dir, value]) => {
+        const cssProp = prop === 'p' ? 'padding' : 'margin'
+        const dirs = {
+          x: [`${cssProp}-left`, `${cssProp}-right`],
+          y: [`${cssProp}-top`, `${cssProp}-bottom`],
+          t: `${cssProp}-top`,
+          r: `${cssProp}-right`,
+          b: `${cssProp}-bottom`,
+          l: `${cssProp}-left`,
+        }
+        const size = !isMp ? `${(Number(value) / 7.5).toFixed(2)}vw` : `${value}rpx`
+        return dirs[dir]
+          ? Array.isArray(dirs[dir])
+            ? Object.fromEntries(dirs[dir].map((k) => [k, size]))
+            : { [dirs[dir]]: size }
+          : { [cssProp]: size }
+      },
+    ],
+    // 处理 font-size
+    [
+      /^fs-(\d+)$/,
+      ([, value]) => ({
+        'font-size': !isMp ? `${(Number(value) / 7.5).toFixed(2)}vw` : `${value}rpx`,
+      }),
+    ],
+
+    // 处理 gap
+    [
+      /^gap-(\d+)$/,
+      ([, value]) => ({
+        gap: !isMp ? `${(Number(value) / 7.5).toFixed(2)}vw` : `${value}rpx`,
+      }),
+    ],
   ],
 })
-
-/**
- * 最终这一套组合下来会得到：
- * mp 里面：mt-4 => margin-top: 32rpx  == 16px
- * h5 里面：mt-4 => margin-top: 1rem == 16px
- *
- * 如果是传统方式写样式，则推荐设计稿设置为 750，这样设计稿1px，代码写1rpx。
- * rpx是响应式的，可以让不同设备的屏幕显示效果保持一致。
- */
