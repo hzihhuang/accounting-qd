@@ -20,16 +20,14 @@ export default defineUniPages({
     spacing: '3px',
     list: [
       {
-        iconPath: 'static/tabbar/home.png',
-        selectedIconPath: 'static/tabbar/homeHL.png',
         pagePath: 'pages/home/index',
         text: '首页',
+        icon: '',
       },
       {
-        iconPath: 'static/tabbar/home.png',
-        selectedIconPath: 'static/tabbar/homeHL.png',
         pagePath: 'pages/about/index',
         text: '关于',
+        icon: '',
       },
     ],
   },
