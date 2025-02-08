@@ -7,24 +7,38 @@
     }
   },
   "tabBar": {
-    "color": "#999999",
-    "selectedColor": "#018d71",
-    "backgroundColor": "#F8F8F8",
+    "color": "#999",
+    "selectedColor": "#007AFF",
+    "backgroundColor": "#fff",
     "borderStyle": "black",
-    "height": "50px",
-    "fontSize": "10px",
-    "iconWidth": "24px",
-    "spacing": "3px",
+    "height": "120rpx",
+    "fontSize": "20rpx",
+    "iconWidth": "50rpx",
+    "spacing": "4rpx",
     "list": [
       {
+        "iconPath": "static/tabbar/home.png",
+        "selectedIconPath": "static/tabbar/home-fill.png",
         "pagePath": "pages/home/index",
-        "text": "首页",
-        "icon": ""
+        "text": "首页"
       },
       {
-        "pagePath": "pages/about/index",
-        "text": "关于",
-        "icon": ""
+        "iconPath": "static/tabbar/chart.png",
+        "selectedIconPath": "static/tabbar/chart-fill.png",
+        "pagePath": "pages/chart/index",
+        "text": "图表"
+      },
+      {
+        "iconPath": "static/tabbar/bills.png",
+        "selectedIconPath": "static/tabbar/bills-fill.png",
+        "pagePath": "pages/bills/index",
+        "text": "账目"
+      },
+      {
+        "iconPath": "static/tabbar/my.png",
+        "selectedIconPath": "static/tabbar/my-fill.png",
+        "pagePath": "pages/my/index",
+        "text": "我的"
       }
     ]
   },
@@ -38,11 +52,27 @@
       }
     },
     {
-      "path": "pages/about/index",
+      "path": "pages/bills/index",
       "type": "about",
       "style": {
         "navigationStyle": "custom",
-        "navigationBarTitleText": "关于"
+        "navigationBarTitleText": "账目"
+      }
+    },
+    {
+      "path": "pages/chart/index",
+      "type": "about",
+      "style": {
+        "navigationStyle": "custom",
+        "navigationBarTitleText": "图表"
+      }
+    },
+    {
+      "path": "pages/my/index",
+      "type": "about",
+      "style": {
+        "navigationStyle": "custom",
+        "navigationBarTitleText": "我的"
       }
     }
   ],

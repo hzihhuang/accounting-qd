@@ -114,24 +114,26 @@ export default ({ command, mode }) => {
     },
     css: {
       postcss: {
-        plugins: [
-          UNI_PLATFORM === 'h5' &&
-            postcssPxToViewport({
-              unitToConvert: 'rpx', // 需要转换的单位
-              viewportWidth: 750, // 设计稿宽度
-              unitPrecision: 5, // 转换后的精度
-              propList: ['*'], // 需要转换的属性
-              viewportUnit: 'vw', // 目标单位
-              fontViewportUnit: 'vw', // 字体单位
-              selectorBlackList: [], // 需要忽略的选择器
-              minPixelValue: 1, // 最小转换数值
-              mediaQuery: false, // 是否转换媒体查询中的单位
-            }),
-          // autoprefixer({
-          //   // 指定目标浏览器
-          //   overrideBrowserslist: ['> 1%', 'last 2 versions'],
-          // }),
-        ],
+        plugins:
+          UNI_PLATFORM === 'h5'
+            ? [
+                postcssPxToViewport({
+                  unitToConvert: 'rpx', // 需要转换的单位
+                  viewportWidth: 750, // 设计稿宽度
+                  unitPrecision: 5, // 转换后的精度
+                  propList: ['*'], // 需要转换的属性
+                  viewportUnit: 'vw', // 目标单位
+                  fontViewportUnit: 'vw', // 字体单位
+                  selectorBlackList: [], // 需要忽略的选择器
+                  minPixelValue: 1, // 最小转换数值
+                  mediaQuery: false, // 是否转换媒体查询中的单位
+                }),
+                // autoprefixer({
+                //   // 指定目标浏览器
+                //   overrideBrowserslist: ['> 1%', 'last 2 versions'],
+                // }),
+              ]
+            : [],
       },
     },
 

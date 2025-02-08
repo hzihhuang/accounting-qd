@@ -3,12 +3,12 @@
 {
   style: {
     navigationStyle: 'custom',
-    navigationBarTitleText: '关于',
+    navigationBarTitleText: '图表',
   },
 }
 </route>
 <template>
-  <view class="mt-4">222</view>
+  <view class="mt-4">图表</view>
 </template>
 
 <script lang="ts" setup></script>
