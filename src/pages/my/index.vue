@@ -11,11 +11,15 @@
 <script lang="ts" setup>
 import { reactive } from 'vue'
 import { httpPost } from '@/utils/http'
+import { useUserStore } from '@/store'
+import { storeToRefs } from 'pinia'
 import { useToast } from 'wot-design-uni'
 
 const toast = useToast()
 
-const token = uni.getStorageSync('token')
+const { setUserInfo, clearUserInfo } = useUserStore()
+const { isLogined, userInfo } = storeToRefs(useUserStore())
+
 const user = reactive({
   username: '',
   password: '',
@@ -24,11 +28,18 @@ const formRef = ref()
 const handleLogin = () => {
   formRef.value.validate().then(({ valid }) => {
     if (valid) {
+      toast.loading('登录中')
       httpPost('auth/login', user)
         .then((res) => {
+          toast.success('登录成功')
           uni.setStorageSync('token', res.token)
+          setUserInfo({
+            token: res.token,
+            username: user.username,
+            avatar: res.avatar ?? userInfo.value.avatar,
+            nickname: res.nickname,
+          })
         })
-        .then((res) => {})
         .catch((err) => {
           toast.error(err.data.message)
         })
@@ -37,20 +48,17 @@ const handleLogin = () => {
 }
 const handleLogout = () => {
   uni.removeStorageSync('token')
+  clearUserInfo()
+  toast.info('已退出登录')
 }
 </script>
 
 <template>
   <view class="flex justify-center mb-48 mt-180">
-    <wd-img
-      width="256rpx"
-      height="256rpx"
-      radius="100%"
-      src="https://nest.nodejs.cn/assets/logo-small-gradient.svg"
-    />
+    <wd-img width="256rpx" height="256rpx" radius="100%" :src="userInfo.avatar" />
   </view>
 
-  <view class="px-64" v-if="!token">
+  <view class="px-64" v-if="!isLogined">
     <wd-form ref="formRef" :model="user">
       <wd-cell-group border>
         <wd-input
@@ -90,7 +98,7 @@ const handleLogout = () => {
   </view>
 
   <view class="flex flex-col gap-48 items-center px-64" v-else>
-    <view class="fs-48">名字</view>
+    <view class="fs-48">{{ userInfo.nickname }}</view>
     <wd-button class="w-full" @click="handleLogout">退出登录</wd-button>
   </view>
 </template>
