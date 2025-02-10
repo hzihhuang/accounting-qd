@@ -7,10 +7,42 @@
   },
 }
 </route>
-<template>
-  <view class="mt-4">账目</view>
-</template>
+<script lang="ts" setup>
+import { useToast } from 'wot-design-uni'
+import Bill from './components/Bill.vue'
+const list = [
+  {
+    type: 'income',
+    tag: '工资',
+    amount: 1000,
+  },
+  {
+    type: 'expense',
+    tag: '午餐',
+    amount: -30,
+  },
+]
 
-<script lang="ts" setup></script>
+const show = ref(false)
+const handleAdd = () => {}
+</script>
+<template>
+  <Bill date="2025-02-10" :list="list" />
+
+  <wd-fab
+    type="primary"
+    position="right-bottom"
+    draggable
+    :expandable="false"
+    @click="show = true"
+  ></wd-fab>
+
+  <wd-popup
+    v-model="show"
+    position="bottom"
+    custom-style="height: 80vh;"
+    @close="show = false"
+  ></wd-popup>
+</template>
 
 <style></style>

@@ -26,12 +26,6 @@ export default defineUniPages({
         navigationBarTitleText: '图表',
       },
     },
-    {
-      path: 'pages/bills/index',
-      style: {
-        navigationBarTitleText: '账目',
-      },
-    },
   ],
   tabBar: {
     color: '#999',

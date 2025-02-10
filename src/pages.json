@@ -22,6 +22,7 @@
       "path": "pages/bills/index",
       "type": "about",
       "style": {
+        "navigationStyle": "custom",
         "navigationBarTitleText": "账目"
       }
     },
