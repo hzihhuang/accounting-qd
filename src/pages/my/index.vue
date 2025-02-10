@@ -41,16 +41,17 @@ const handleLogout = () => {
 </script>
 
 <template>
-  <view class="flex justify-center mb-48">
+  <view class="flex justify-center mb-48 mt-180">
     <wd-img
-      class="w-256 h-256 bg-gray-200 mt-180"
+      width="256rpx"
+      height="256rpx"
       radius="100%"
       src="https://nest.nodejs.cn/assets/logo-small-gradient.svg"
     />
   </view>
 
   <view class="px-64" v-if="!token">
-    <wd-form class="flex flex-col gap-48" ref="formRef" :model="user">
+    <wd-form ref="formRef" :model="user">
       <wd-cell-group border>
         <wd-input
           label="用户名"
@@ -82,8 +83,8 @@ const handleLogout = () => {
           placeholder="请输入密码"
         />
       </wd-cell-group>
-      <view class="footer">
-        <wd-button type="primary" @click="handleLogin" block>提交</wd-button>
+      <view class="mt-48">
+        <wd-button type="primary" @click="handleLogin" block>登录</wd-button>
       </view>
     </wd-form>
   </view>
