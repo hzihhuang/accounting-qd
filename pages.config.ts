@@ -9,6 +9,30 @@ export default defineUniPages({
         'z-paging/components/z-paging$1/z-paging$1.vue',
     },
   },
+  globalStyle: {
+    navigationBarTextStyle: 'black',
+    navigationBarBackgroundColor: '#fff', // 导航栏背景颜色
+  },
+  pages: [
+    {
+      path: 'pages/home/index',
+      style: {
+        navigationBarTitleText: '首页',
+      },
+    },
+    {
+      path: 'pages/chart/index',
+      style: {
+        navigationBarTitleText: '图表',
+      },
+    },
+    {
+      path: 'pages/bills/index',
+      style: {
+        navigationBarTitleText: '账目',
+      },
+    },
+  ],
   tabBar: {
     color: '#999',
     selectedColor: '#007AFF',

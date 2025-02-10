@@ -118,22 +118,30 @@ export default ({ command, mode }) => {
           UNI_PLATFORM === 'h5'
             ? [
                 postcssPxToViewport({
-                  unitToConvert: 'rpx', // 需要转换的单位
-                  viewportWidth: 750, // 设计稿宽度
-                  unitPrecision: 5, // 转换后的精度
-                  propList: ['*'], // 需要转换的属性
-                  viewportUnit: 'vw', // 目标单位
-                  fontViewportUnit: 'vw', // 字体单位
-                  selectorBlackList: [], // 需要忽略的选择器
-                  minPixelValue: 1, // 最小转换数值
-                  mediaQuery: false, // 是否转换媒体查询中的单位
+                  unitToConvert: 'px', // 需要转换的单位
+                  viewportWidth: 750 / 3.75 / 2 / 2, // 设计稿宽度
+                  viewportUnit: 'rpx', // 目标单位
+                  fontViewportUnit: 'rpx', // 字体单位
+                }),
+                postcssPxToViewport({
+                  unitToConvert: 'rpx',
+                  viewportWidth: 750,
+                  viewportUnit: 'vw',
+                  fontViewportUnit: 'vw',
                 }),
                 // autoprefixer({
                 //   // 指定目标浏览器
                 //   overrideBrowserslist: ['> 1%', 'last 2 versions'],
                 // }),
               ]
-            : [],
+            : [
+                postcssPxToViewport({
+                  unitToConvert: 'px',
+                  viewportWidth: 750 / 3.75 / 2 / 2,
+                  viewportUnit: 'rpx',
+                  fontViewportUnit: 'rpx',
+                }),
+              ],
       },
     },
 

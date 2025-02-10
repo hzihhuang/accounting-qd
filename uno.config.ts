@@ -25,6 +25,33 @@ if (isMp) {
     presetAttributify(),
   )
 }
+
+const sizeTransformer = (value: string, isMp: boolean) =>
+  !isMp ? `${(Number(value) / 7.5).toFixed(2)}vw` : `${value}rpx`
+
+// 属性映射表
+const propMap: Record<string, string> = {
+  fs: 'font-size',
+  gap: 'gap',
+  radius: 'border-radius',
+  w: 'width',
+  h: 'height',
+  p: 'padding',
+  px: 'padding-inline',
+  py: 'padding-block',
+  pl: 'padding-left',
+  pt: 'padding-top',
+  pr: 'padding-right',
+  pb: 'padding-bottom',
+  m: 'margin',
+  mx: 'margin-inline',
+  my: 'margin-block',
+  ml: 'margin-left',
+  mt: 'margin-top',
+  mr: 'margin-right',
+  mb: 'margin-bottom',
+}
+
 export default defineConfig({
   presets: [
     ...presets,
@@ -74,38 +101,9 @@ export default defineConfig({
     ['pt-safe', { 'padding-top': 'env(safe-area-inset-top)' }],
     ['pb-safe', { 'padding-bottom': 'env(safe-area-inset-bottom)' }],
     [
-      /^([pm])([xytrbl]?)-(\d+)$/,
-      ([, prop, dir, value]) => {
-        const cssProp = prop === 'p' ? 'padding' : 'margin'
-        const dirs = {
-          x: [`${cssProp}-left`, `${cssProp}-right`],
-          y: [`${cssProp}-top`, `${cssProp}-bottom`],
-          t: `${cssProp}-top`,
-          r: `${cssProp}-right`,
-          b: `${cssProp}-bottom`,
-          l: `${cssProp}-left`,
-        }
-        const size = !isMp ? `${(Number(value) / 7.5).toFixed(2)}vw` : `${value}rpx`
-        return dirs[dir]
-          ? Array.isArray(dirs[dir])
-            ? Object.fromEntries(dirs[dir].map((k) => [k, size]))
-            : { [dirs[dir]]: size }
-          : { [cssProp]: size }
-      },
-    ],
-    // 处理 font-size
-    [
-      /^fs-(\d+)$/,
-      ([, value]) => ({
-        'font-size': !isMp ? `${(Number(value) / 7.5).toFixed(2)}vw` : `${value}rpx`,
-      }),
-    ],
-
-    // 处理 gap
-    [
-      /^gap-(\d+)$/,
-      ([, value]) => ({
-        gap: !isMp ? `${(Number(value) / 7.5).toFixed(2)}vw` : `${value}rpx`,
+      /^(fs|gap|radius|w|h|p|px|py|pl|pt|pr|pb|m|mx|my|ml|mt|mr|mb)-(\d+)$/,
+      ([, prop, value]) => ({
+        [propMap[prop]]: sizeTransformer(value, isMp),
       }),
     ],
   ],

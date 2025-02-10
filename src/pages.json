@@ -6,6 +6,41 @@
       "^(?!z-paging-refresh|z-paging-load-more)z-paging(.*)": "z-paging/components/z-paging$1/z-paging$1.vue"
     }
   },
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarBackgroundColor": "#fff"
+  },
+  "pages": [
+    {
+      "path": "pages/home/index",
+      "type": "home",
+      "style": {
+        "navigationBarTitleText": "首页"
+      }
+    },
+    {
+      "path": "pages/bills/index",
+      "type": "about",
+      "style": {
+        "navigationBarTitleText": "账目"
+      }
+    },
+    {
+      "path": "pages/chart/index",
+      "type": "about",
+      "style": {
+        "navigationBarTitleText": "图表"
+      }
+    },
+    {
+      "path": "pages/my/index",
+      "type": "about",
+      "style": {
+        "navigationStyle": "custom",
+        "navigationBarTitleText": "我的"
+      }
+    }
+  ],
   "tabBar": {
     "color": "#999",
     "selectedColor": "#007AFF",
@@ -42,39 +77,5 @@
       }
     ]
   },
-  "pages": [
-    {
-      "path": "pages/home/index",
-      "type": "home",
-      "style": {
-        "navigationStyle": "custom",
-        "navigationBarTitleText": "首页"
-      }
-    },
-    {
-      "path": "pages/bills/index",
-      "type": "about",
-      "style": {
-        "navigationStyle": "custom",
-        "navigationBarTitleText": "账目"
-      }
-    },
-    {
-      "path": "pages/chart/index",
-      "type": "about",
-      "style": {
-        "navigationStyle": "custom",
-        "navigationBarTitleText": "图表"
-      }
-    },
-    {
-      "path": "pages/my/index",
-      "type": "about",
-      "style": {
-        "navigationStyle": "custom",
-        "navigationBarTitleText": "我的"
-      }
-    }
-  ],
   "subPackages": []
 }
