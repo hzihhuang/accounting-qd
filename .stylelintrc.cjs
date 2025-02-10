@@ -54,5 +54,6 @@ module.exports = {
     'scss/comment-no-empty': null,
     'selector-class-pattern': null,
     'font-family-no-missing-generic-family-keyword': null,
+    'declaration-property-value-no-unknown': null,
   },
 }
