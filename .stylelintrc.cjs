@@ -55,5 +55,6 @@ module.exports = {
     'selector-class-pattern': null,
     'font-family-no-missing-generic-family-keyword': null,
     'declaration-property-value-no-unknown': null,
+    'selector-type-no-unknown': null,
   },
 }

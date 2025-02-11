@@ -1,5 +1,6 @@
 <route lang="json5" type="home">
 {
+  layout: 'tabbar',
   style: {
     navigationStyle: 'custom',
     navigationBarTitleText: '首页',

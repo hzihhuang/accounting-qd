@@ -14,6 +14,7 @@
     {
       "path": "pages/home/index",
       "type": "home",
+      "layout": "tabbar",
       "style": {
         "navigationBarTitleText": "首页"
       }
@@ -21,6 +22,7 @@
     {
       "path": "pages/bills/index",
       "type": "about",
+      "layout": "tabbar",
       "style": {
         "navigationStyle": "custom",
         "navigationBarTitleText": "账目"
@@ -29,6 +31,7 @@
     {
       "path": "pages/chart/index",
       "type": "about",
+      "layout": "tabbar",
       "style": {
         "navigationBarTitleText": "图表"
       }
@@ -36,6 +39,7 @@
     {
       "path": "pages/my/index",
       "type": "about",
+      "layout": "tabbar",
       "style": {
         "navigationStyle": "custom",
         "navigationBarTitleText": "我的"
@@ -43,38 +47,33 @@
     }
   ],
   "tabBar": {
+    "custom": true,
     "color": "#999",
     "selectedColor": "#007AFF",
-    "backgroundColor": "#fff",
-    "borderStyle": "black",
-    "height": "120rpx",
-    "fontSize": "20rpx",
-    "iconWidth": "50rpx",
-    "spacing": "4rpx",
     "list": [
       {
-        "iconPath": "static/tabbar/home.png",
-        "selectedIconPath": "static/tabbar/home-fill.png",
         "pagePath": "pages/home/index",
-        "text": "首页"
+        "text": "首页",
+        "icon": "home",
+        "name": "home"
       },
       {
-        "iconPath": "static/tabbar/chart.png",
-        "selectedIconPath": "static/tabbar/chart-fill.png",
         "pagePath": "pages/chart/index",
-        "text": "图表"
+        "text": "图表",
+        "icon": "chart",
+        "name": "chart"
       },
       {
-        "iconPath": "static/tabbar/bills.png",
-        "selectedIconPath": "static/tabbar/bills-fill.png",
         "pagePath": "pages/bills/index",
-        "text": "账目"
+        "text": "账目",
+        "icon": "list",
+        "name": "bills"
       },
       {
-        "iconPath": "static/tabbar/my.png",
-        "selectedIconPath": "static/tabbar/my-fill.png",
         "pagePath": "pages/my/index",
-        "text": "我的"
+        "text": "我的",
+        "icon": "user",
+        "name": "my"
       }
     ]
   },
