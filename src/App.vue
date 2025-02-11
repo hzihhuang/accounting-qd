@@ -1,12 +1,31 @@
 <script setup lang="ts">
 import { onLaunch, onShow, onHide } from '@dcloudio/uni-app'
 import 'abortcontroller-polyfill/dist/abortcontroller-polyfill-only'
+import { useUserStore } from '@/store'
+import { storeToRefs } from 'pinia'
+import { Pages } from '@/enums/pages'
+
+const { isLogined } = storeToRefs(useUserStore())
 
 onLaunch(() => {
   console.log('App Launch')
 })
+
+// 监听 logined 状态变化
+watch(
+  () => isLogined,
+  (logined) => {
+    if (!logined) {
+      uni.reLaunch({ url: Pages.Login }) // 强制跳转
+    }
+  },
+)
 onShow(() => {
-  console.log('App Show')
+  const currentPath = uni.getLaunchOptionsSync().path
+  const whiteList = ['pages/login', 'pages/register']
+  if (!isLogined.value && !whiteList.includes(currentPath)) {
+    uni.reLaunch({ url: Pages.Login }) // 强制跳转
+  }
 })
 onHide(() => {
   console.log('App Hide')

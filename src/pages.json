@@ -20,6 +20,22 @@
       }
     },
     {
+      "path": "pages/register",
+      "type": "home",
+      "style": {
+        "navigationStyle": "custom",
+        "navigationBarTitleText": "注册"
+      }
+    },
+    {
+      "path": "pages/login",
+      "type": "home",
+      "style": {
+        "navigationStyle": "custom",
+        "navigationBarTitleText": "登录"
+      }
+    },
+    {
       "path": "pages/bills/index",
       "type": "about",
       "layout": "tabbar",
