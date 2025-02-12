@@ -1,3 +1,5 @@
+@use './components/tabbar';
+
 :root,
 page {
   font-family:
@@ -10,14 +12,6 @@ page {
   background-color: #f8f9fa;
   --window-bottom: calc(32rpx + env(safe-area-inset-bottom));
   --wot-color-theme: #4d80f0;
-}
-
-// tabbar
-.wd-tabbar.wd-tabbar--round {
-  margin-bottom: 32rpx;
-}
-uni-app > uni-tabbar {
-  display: none !important;
 }
 
 // wd-action-sheet

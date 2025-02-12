@@ -1,0 +1,42 @@
+// tabbar
+.wd-tabbar.wd-tabbar--round {
+  margin-bottom: 32rpx;
+}
+uni-app > uni-tabbar {
+  display: none !important;
+}
+
+.wd-tabbar.accounting-tabbar {
+  .tabbar-item-add {
+    flex: unset;
+    width: 100rpx;
+    height: 100rpx;
+    color: white;
+    background-color: #597fe8;
+    border-radius: 999px;
+    transform: translateY(-30%);
+    --wot-tabbar-inactive-color: white;
+  }
+}
+
+.add-tag-popup {
+  z-index: 100;
+  height: 80vh;
+  border-radius: 32rpx 32rpx 0 0;
+  .tags {
+    gap: 24rpx 40rpx;
+    margin: 40rpx auto 0;
+
+    .tags-item {
+      &.active {
+        .tags-item-icon {
+          background-color: var(--wot-color-theme);
+        }
+
+        .tags-item-text {
+          color: var(--wot-color-theme);
+        }
+      }
+    }
+  }
+}
