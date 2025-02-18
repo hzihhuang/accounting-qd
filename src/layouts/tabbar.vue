@@ -8,5 +8,5 @@
 </template>
 
 <script lang="ts" setup>
-import AccountingTabbar from '@/components/AccountingTabbar.vue'
+import AccountingTabbar from '@/components/AccountingTabbar/index.vue'
 </script>
