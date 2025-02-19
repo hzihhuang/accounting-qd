@@ -10,10 +10,9 @@
 <script lang="ts" setup>
 import { Pages } from '@/enums/pages'
 import { useUserStore } from '@/store'
+import { showToast } from '@/utils/globalToast'
 import { storeToRefs } from 'pinia'
-import { useToast } from 'wot-design-uni'
 
-const toast = useToast()
 const { isLogined } = storeToRefs(useUserStore())
 const user = reactive({
   username: '',
@@ -24,7 +23,7 @@ const formRef = ref()
 const handleLogin = () => {
   formRef.value.validate().then(({ valid }) => {
     if (valid) {
-      toast.loading('登录中')
+      showToast().loading('登录中')
       runLogin()
     }
   })

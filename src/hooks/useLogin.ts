@@ -1,10 +1,9 @@
 import { Pages } from '@/enums/pages'
 import { useUserStore } from '@/store'
+import { showToast } from '@/utils/globalToast'
 import { httpPost } from '@/utils/http'
-import { useToast } from 'wot-design-uni'
 
 const useLogin = (user: { username: string; password: string }) => {
-  const toast = useToast()
   const { setUserInfo } = useUserStore()
 
   return () => {
@@ -20,10 +19,10 @@ const useLogin = (user: { username: string; password: string }) => {
         })
         // 跳转首页
         uni.switchTab({ url: Pages.Home })
-        toast.success('登录成功')
+        showToast().success('登录成功')
       })
       .catch((err) => {
-        toast.error(err.data.message)
+        showToast().error(err.data.message)
       })
   }
 }

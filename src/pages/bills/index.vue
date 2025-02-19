@@ -9,7 +9,6 @@
 }
 </route>
 <script lang="ts" setup>
-import { useToast } from 'wot-design-uni'
 import Bill from './components/Bill.vue'
 const list = [
   {

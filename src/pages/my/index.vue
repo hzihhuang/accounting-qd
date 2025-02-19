@@ -11,17 +11,15 @@
 
 <script lang="ts" setup>
 import { useUserStore } from '@/store'
+import { showToast } from '@/utils/globalToast'
 import { storeToRefs } from 'pinia'
-import { useToast } from 'wot-design-uni'
-
-const toast = useToast()
 
 const { clearUserInfo } = useUserStore()
 const { userInfo } = storeToRefs(useUserStore())
 
 const handleLogout = () => {
   clearUserInfo()
-  toast.info('已退出登录')
+  showToast().info('已退出登录')
 }
 </script>
 

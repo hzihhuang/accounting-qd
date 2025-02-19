@@ -1,5 +1,6 @@
 import { CustomRequestOptions } from '@/interceptors/request'
 import { useUserStore } from '@/store'
+import { showToast } from './globalToast'
 
 export const http = <T>(options: CustomRequestOptions) => {
   const { clearUserInfo } = useUserStore()
@@ -28,20 +29,15 @@ export const http = <T>(options: CustomRequestOptions) => {
           reject(res)
         } else {
           // 其他错误 -> 根据后端错误信息轻提示
-          !options.hideErrorToast &&
-            uni.showToast({
-              icon: 'none',
-              title: (res.data as IResData<T>).message || '请求错误',
-            })
+          if (!options.hideErrorToast) {
+            showToast().error((res.data as any).message || '请求错误')
+          }
           reject(res)
         }
       },
       // 响应失败
       fail(err) {
-        uni.showToast({
-          icon: 'none',
-          title: '网络错误，换个网络试试',
-        })
+        showToast().error('网络错误，换个网络试试')
         reject(err)
       },
     })

@@ -9,10 +9,9 @@
 
 <script lang="ts" setup>
 import { Pages } from '@/enums/pages'
+import { showToast } from '@/utils/globalToast'
 import { httpPost } from '@/utils/http'
-import { useToast } from 'wot-design-uni'
 
-const toast = useToast()
 const registerUser = reactive({
   username: '',
   password: '',
@@ -23,13 +22,13 @@ const formRef = ref()
 const handleRegister = () => {
   formRef.value.validate().then(({ valid }) => {
     if (valid) {
-      toast.loading('注册中')
+      showToast().loading('注册中')
       httpPost('auth/register', registerUser)
         .then((res) => {
           runLogin()
         })
         .catch((err) => {
-          toast.error(err.message)
+          showToast().error(err.message)
         })
     }
   })

@@ -4,11 +4,12 @@ import 'abortcontroller-polyfill/dist/abortcontroller-polyfill-only'
 import { useUserStore } from '@/store'
 import { storeToRefs } from 'pinia'
 import { Pages } from '@/enums/pages'
+import { setToastInstance } from '@/utils/globalToast'
 
 const { isLogined } = storeToRefs(useUserStore())
 
 onLaunch(() => {
-  console.log('App Launch')
+  setToastInstance()
 })
 
 // 监听 logined 状态变化
