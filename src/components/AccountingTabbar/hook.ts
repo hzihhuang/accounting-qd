@@ -8,11 +8,13 @@ export interface ITag {
   type: IAccountingTypeEnum
 }
 export enum IAccountingTypeEnum {
-  income = 'income',
   expense = 'expense',
+  income = 'income',
 }
 
-// tabbar 核心切换能力
+/**
+ * 核心切换能力
+ */
 export const useTabbar = (handleAdd: () => void) => {
   const tabbarList = computed(() => {
     if (!tabBar?.list?.length) return [] // 避免 tabBar.list 为空或未定义时报错
@@ -48,8 +50,10 @@ export const useTabbar = (handleAdd: () => void) => {
   }
 }
 
-export const useAddBill = () => {
-  const show = ref(false)
+/**
+ * 增加账单能力
+ */
+export const useAddBill = (show: globalThis.Ref<boolean, boolean>) => {
   const tags = ref<ITag[]>([])
   const currentType = ref<IAccountingTypeEnum>(IAccountingTypeEnum.expense)
   const useTags = computed(() => {
@@ -78,12 +82,7 @@ export const useAddBill = () => {
     })
   })
 
-  watchEffect(() => {
-    console.log(tags.value)
-  })
-
   return {
-    show,
     useTags,
     activeTagId,
     currentType,
@@ -93,7 +92,7 @@ export const useAddBill = () => {
   }
 }
 
-export const useAddBillDate = () => {
+export const useBillDate = () => {
   const DEFAULT_DATE = new Date().getTime()
   const showDate = ref(false)
   const cacheDate = ref(DEFAULT_DATE)
@@ -113,7 +112,10 @@ export const useAddBillDate = () => {
   }
 
   return {
+    DEFAULT_DATE,
+    showDate,
     handleCancel,
+    handleDateChange,
     billDate,
     cacheDate,
   }

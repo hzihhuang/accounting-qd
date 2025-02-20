@@ -33,7 +33,7 @@ const [totalIncome, totalExpense] = computed(() => {
 </script>
 
 <template>
-  <wd-card class="overflow-hidden bill-card">
+  <wd-card custom-class="bill-card">
     <view class="flex justify-between items-center fs-24 color-gray-4 pt-32 pb-20 px-32">
       <view>{{ dateString }}</view>
       <view class="flex items-center gap-24">
@@ -65,22 +65,3 @@ const [totalIncome, totalExpense] = computed(() => {
     </wd-swipe-action>
   </wd-card>
 </template>
-
-<style lang="scss" scoped>
-.bill-card {
-  padding: 0 0 12rpx;
-  margin: 32rpx 32rpx 0;
-}
-.bill-item + .bill-item {
-  .bill-item-right {
-    &::before {
-      position: absolute;
-      top: 0;
-      width: 100%;
-      height: 1rpx;
-      content: '';
-      background-color: #f0f0f0;
-    }
-  }
-}
-</style>

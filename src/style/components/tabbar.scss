@@ -1,11 +1,13 @@
-// tabbar
-.wd-tabbar.wd-tabbar--round {
-  margin-bottom: 32rpx;
-}
 uni-app > uni-tabbar {
   display: none !important;
 }
-
+.wd-tabbar.wd-tabbar--round {
+  margin-bottom: 32rpx;
+}
+.wd-tabbar__placeholder {
+  box-sizing: content-box;
+  padding-bottom: calc(env(safe-area-inset-bottom) + 64rpx) !important;
+}
 .wd-tabbar.accounting-tabbar {
   .tabbar-item-add {
     flex: unset;
