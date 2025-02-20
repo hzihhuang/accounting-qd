@@ -1,4 +1,5 @@
-import { httpGet } from '@/utils/http'
+import { showToast } from '@/utils/globalToast'
+import { httpDelete, httpGet } from '@/utils/http'
 import { defineStore } from 'pinia'
 
 export const useBillsStore = defineStore(
@@ -14,6 +15,15 @@ export const useBillsStore = defineStore(
         data.value = res.data as any
       })
     })
+
+    const handleDelete = (id: number) => {
+      showToast().loading('删除中')
+      httpDelete('bills', id)
+        .then(() => {
+          data.value = data.value.filter((item: any) => item.id !== id)
+        })
+        .catch(() => {})
+    }
     return {
       data,
     }

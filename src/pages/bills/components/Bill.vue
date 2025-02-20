@@ -2,6 +2,7 @@
 const { date, list } = defineProps<{
   date: string
   list: {
+    id: number
     // 收入或支出
     type: 'income' | 'expense'
     // 金额
@@ -14,6 +15,9 @@ const { date, list } = defineProps<{
       icon: string
     }
   }[]
+}>()
+const emits = defineEmits<{
+  delete: [id: number]
 }>()
 
 // 格式化日期
@@ -39,20 +43,16 @@ const [totalIncome, totalExpense] = computed(() => {
 </script>
 
 <template>
-  <wd-card class="overflow-hidden">
-    <view class="flex justify-between items-center fs-24 color-gray-4 pt-32 pb-20">
+  <wd-card class="overflow-hidden bill-card">
+    <view class="flex justify-between items-center fs-24 color-gray-4 pt-32 pb-20 px-32">
       <view>{{ dateString }}</view>
       <view class="flex items-center gap-24">
         <view v-show="totalIncome > 0">收入: {{ totalIncome }}</view>
         <view v-show="totalExpense < 0">支出: {{ totalExpense }}</view>
       </view>
     </view>
-    <view>
-      <view
-        class="flex justify-between items-center py-16 bill-item relative"
-        v-for="(item, idx) in list"
-        :key="idx"
-      >
+    <wd-swipe-action v-for="item in list" :key="item.id">
+      <view class="flex justify-between items-center py-16 px-32 bill-item relative">
         <view class="w-64 h-64 p-12 rounded-full mr-24 overflow-hidden bg-gray-1">
           <image :src="item.tag.icon" class="w-full h-full"></image>
         </view>
@@ -61,11 +61,22 @@ const [totalIncome, totalExpense] = computed(() => {
           <view class="fs-28">{{ item.amount }}</view>
         </view>
       </view>
-    </view>
+      <template #right>
+        <view
+          class="w-100 h-full flex items-center justify-center bg-red-5 color-white fs-28"
+          @click="emits('delete', item.id)"
+        >
+          删除
+        </view>
+      </template>
+    </wd-swipe-action>
   </wd-card>
 </template>
 
 <style lang="scss" scoped>
+.bill-card {
+  padding: 0 0 12rpx;
+}
 .bill-item + .bill-item {
   .bill-item-right {
     &::before {

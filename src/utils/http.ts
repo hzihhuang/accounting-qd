@@ -73,5 +73,13 @@ export const httpPost = <T>(url: string, data?: Record<string, any>) => {
   })
 }
 
+export const httpDelete = <T>(url: string, id: number) => {
+  return http<T>({
+    url: `${url}/${id}`,
+    method: 'DELETE',
+  })
+}
+
 http.get = httpGet
 http.post = httpPost
+http.delete = httpDelete

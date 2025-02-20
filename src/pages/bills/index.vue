@@ -31,9 +31,5 @@ const groupedData = computed(() => {
 })
 </script>
 <template>
-  <div class="pt-32">
-    <Bill :date="item.time" v-for="item in groupedData" :key="item.time" :list="item.list" />
-  </div>
+  <Bill :date="item.time" v-for="item in groupedData" :key="item.time" :list="item.list" />
 </template>
-
-<style></style>
