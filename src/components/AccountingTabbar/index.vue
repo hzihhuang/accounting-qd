@@ -1,42 +1,22 @@
 <script lang="ts" setup>
-import { IncomeExpenditureMap } from '@/enums/global'
-import { useTagsStore } from '@/store'
 import { formatDate, isSameDay } from '@/utils/fun'
-import { storeToRefs } from 'pinia'
-import { useAddBillDate, useTabbar } from './index'
+import { IAccountingTypeEnum, useAddBill, useAddBillDate, useTabbar } from './'
 
-const { tabbarList, currentTabbar, selectTabBar } = useTabbar(handleAdd)
-const show = ref(false)
-const type = ref(IncomeExpenditureMap.EXPENDITURE)
-const activeTagId = ref()
-function handleAdd() {
+// 核心切换 tabbar 能力
+const { currentTabbar, selectTabBar, tabbarList } = useTabbar(() => {
   show.value = true
-}
+})
 
-// 标签
-const { tags } = storeToRefs(useTagsStore())
-const useTags = computed(() =>
-  type.value === IncomeExpenditureMap.INCOME ? tags.value.incomeTags : tags.value.expenseTags,
-)
-const handleClickTag = (id: number) => {
-  activeTagId.value = id
-}
-
-// 选择日期
-const { billDate, cacheDate, handleCancel } = useAddBillDate()
-const handleDateChange = (e: any) => {
-  if (typeof e === 'string') {
-    showDate.value = false
-    billDate.value = cacheDate.value
-  } else {
-    cacheDate.value = e.value
-  }
-}
-const handleCloseAdd = () => {
-  show.value = false
-  handleCancel()
-}
-const handleAddTag = () => {}
+// 添加账单功能
+const {
+  show,
+  useTags,
+  activeTagId,
+  currentType,
+  handleCloseAddBill,
+  handleSubmitAddBill,
+  handleSwitchTag,
+} = useAddBill()
 </script>
 
 <template>
@@ -64,7 +44,7 @@ const handleAddTag = () => {}
   <wd-popup
     custom-class="add-tag-popup"
     v-model="show"
-    @close="handleCloseAdd"
+    @close="handleCloseAddBill"
     position="bottom"
     lock-scroll
     closable
@@ -74,20 +54,14 @@ const handleAddTag = () => {}
       <view class="w-320">
         <wd-segmented
           size="small"
-          :options="Object.values(IncomeExpenditureMap)"
-          v-model:value="type"
+          :options="[IAccountingTypeEnum.expense, IAccountingTypeEnum.income]"
+          v-model:value="currentType"
         ></wd-segmented>
       </view>
     </view>
     <view class="flex items-center gap-48 px-32 mt-40">
-      <wd-button
-        custom-class="flex items-center gap-8 w-180"
-        plain
-        size="small"
-        :icon="DEFAULT_DATE === billDate ? 'time-filled' : undefined"
-        @click="showDate = true"
-      >
-        {{ isSameDay(DEFAULT_DATE, billDate) ? '今天' : formatDate(billDate) }}
+      <wd-button custom-class="flex items-center gap-8 w-180" plain size="small" icon="time-filled">
+        <!-- {{ isSameDay(DEFAULT_DATE, billDate) ? '今天' : formatDate(billDate) }} -->
       </wd-button>
       <wd-input
         class="flex-1 text-center"
@@ -95,14 +69,14 @@ const handleAddTag = () => {}
         placeholder="请输入金额"
         inputmode="numeric"
       />
-      <wd-button custom-class="w-180" size="small" @click="handleAddTag">确定</wd-button>
+      <wd-button custom-class="w-180" size="small" @click="handleSubmitAddBill">确定</wd-button>
     </view>
     <view class="tags grid grid-cols-5 w-fit" :style="{ justifySelf: 'center' }">
       <view
         :class="`tags-item flex flex-col items-center gap-8 ${i.id === activeTagId ? 'active' : ''}`"
         v-for="i in useTags"
         :key="i.id"
-        @click="handleClickTag(i.id)"
+        @click="handleSwitchTag(i.id)"
       >
         <view class="tags-item-icon w-100 h-100 rounded-full bg-gray-1 p-18">
           <image :src="i.icon" class="w-full h-full"></image>
@@ -115,10 +89,10 @@ const handleAddTag = () => {}
   <!-- 键盘 -->
 
   <!-- 日期 -->
-  <wd-action-sheet v-model="showDate" title="选择日期" @close="billDate = DEFAULT_DATE">
+  <!-- <wd-action-sheet v-model="showDate" title="选择日期" @close="billDate = DEFAULT_DATE">
     <wd-calendar-view v-model="cacheDate" @change="handleDateChange" />
     <view class="px-48 flex mt-48">
       <wd-button class="flex-1" type="primary" @click="handleDateChange('submit')">确定</wd-button>
     </view>
-  </wd-action-sheet>
+  </wd-action-sheet> -->
 </template>

@@ -54,7 +54,6 @@ const propMap: Record<string, string> = {
   top: 'top',
   bottom: 'bottom',
   left: 'left',
-  z: 'z-index',
 }
 
 export default defineConfig({
@@ -106,7 +105,13 @@ export default defineConfig({
     ['pt-safe', { 'padding-top': 'env(safe-area-inset-top)' }],
     ['pb-safe', { 'padding-bottom': 'env(safe-area-inset-bottom)' }],
     [
-      /^(fs|gap|radius|w|h|p|px|py|pl|pt|pr|pb|m|mx|my|ml|mt|mr|mb|right|top|bottom|left|z)-(\d+)$/,
+      /^(z)-(\d+)$/,
+      ([, prop, value]) => ({
+        'z-index': value,
+      }),
+    ],
+    [
+      /^(fs|gap|radius|w|h|p|px|py|pl|pt|pr|pb|m|mx|my|ml|mt|mr|mb|right|top|bottom|left)-(\d+)$/,
       ([, prop, value]) => ({
         [propMap[prop]]: sizeTransformer(value, isMp),
       }),

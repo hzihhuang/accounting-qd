@@ -1,5 +1,16 @@
 import { tabBar } from '@/pages.json'
-import { storeToRefs } from 'pinia'
+import { httpGet } from '@/utils/http'
+
+export interface ITag {
+  id: number
+  name: string
+  icon: string
+  type: IAccountingTypeEnum
+}
+export enum IAccountingTypeEnum {
+  income = 'income',
+  expense = 'expense',
+}
 
 // tabbar 核心切换能力
 export const useTabbar = (handleAdd: () => void) => {
@@ -34,6 +45,51 @@ export const useTabbar = (handleAdd: () => void) => {
     currentTabbar,
     selectTabBar,
     tabbarList,
+  }
+}
+
+export const useAddBill = () => {
+  const show = ref(false)
+  const tags = ref<ITag[]>([])
+  const currentType = ref<IAccountingTypeEnum>(IAccountingTypeEnum.expense)
+  const useTags = computed(() => {
+    switch (currentType.value) {
+      case IAccountingTypeEnum.expense:
+        return tags.value.filter((i) => i.type === IAccountingTypeEnum.expense)
+      case IAccountingTypeEnum.income:
+        return tags.value.filter((i) => i.type === IAccountingTypeEnum.income)
+      default:
+        return tags.value
+    }
+  })
+  const activeTagId = ref()
+
+  const handleSwitchTag = (id: number) => {
+    activeTagId.value = id
+  }
+  const handleCloseAddBill = () => {
+    show.value = false
+  }
+  const handleSubmitAddBill = () => {}
+
+  onBeforeMount(() => {
+    httpGet<ITag[]>('tags').then((res) => {
+      tags.value = res
+    })
+  })
+
+  watchEffect(() => {
+    console.log(tags.value)
+  })
+
+  return {
+    show,
+    useTags,
+    activeTagId,
+    currentType,
+    handleCloseAddBill,
+    handleSubmitAddBill,
+    handleSwitchTag,
   }
 }
 

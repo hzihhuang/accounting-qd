@@ -1,23 +1,13 @@
 <script lang="ts" setup>
+import { BillInter } from '@/types/bills'
+
 const { date, list } = defineProps<{
   date: string
-  list: {
-    id: number
-    // 收入或支出
-    type: 'income' | 'expense'
-    // 金额
-    amount: number
-    // 备注
-    note?: string
-    // 标签
-    tag: {
-      name: string
-      icon: string
-    }
-  }[]
+  list: BillInter[]
 }>()
 const emits = defineEmits<{
   delete: [id: number]
+  detail: [id: number]
 }>()
 
 // 格式化日期
@@ -52,7 +42,10 @@ const [totalIncome, totalExpense] = computed(() => {
       </view>
     </view>
     <wd-swipe-action v-for="item in list" :key="item.id">
-      <view class="flex justify-between items-center py-16 px-32 bill-item relative">
+      <view
+        class="flex justify-between items-center py-16 px-32 bill-item relative active:bg-gray-1"
+        @click="emits('detail', item.id)"
+      >
         <view class="w-64 h-64 p-12 rounded-full mr-24 overflow-hidden bg-gray-1">
           <image :src="item.tag.icon" class="w-full h-full"></image>
         </view>
@@ -63,7 +56,7 @@ const [totalIncome, totalExpense] = computed(() => {
       </view>
       <template #right>
         <view
-          class="w-100 h-full flex items-center justify-center bg-red-5 color-white fs-28"
+          class="w-120 ml-1 h-full flex items-center justify-center bg-red-5 color-white fs-28"
           @click="emits('delete', item.id)"
         >
           删除
@@ -76,6 +69,7 @@ const [totalIncome, totalExpense] = computed(() => {
 <style lang="scss" scoped>
 .bill-card {
   padding: 0 0 12rpx;
+  margin: 32rpx 32rpx 0;
 }
 .bill-item + .bill-item {
   .bill-item-right {

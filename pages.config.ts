@@ -46,7 +46,7 @@ export default defineUniPages({
       },
       {
         pagePath: 'pages/bills/index',
-        text: '账目',
+        text: '账单',
         icon: 'list',
         name: 'bills',
       },
