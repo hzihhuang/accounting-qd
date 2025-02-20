@@ -9,7 +9,7 @@ export const useBillsStore = defineStore(
       httpGet('bills', {
         page: 1,
         pageSize: 0,
-        date: '2025-01',
+        // date: '2025-01',
       }).then((res) => {
         data.value = res.data as any
       })
