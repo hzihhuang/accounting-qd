@@ -16,7 +16,7 @@ function handleAdd() {
 // 标签
 const { tags } = storeToRefs(useTagsStore())
 const useTags = computed(() =>
-  type.value === IncomeExpenditureMap.INCOME ? tags.value.expenseTags : tags.value.incomeTags,
+  type.value === IncomeExpenditureMap.INCOME ? tags.value.incomeTags : tags.value.expenseTags,
 )
 const handleClickTag = (id: number) => {
   activeTagId.value = id
@@ -104,7 +104,9 @@ const handleAddTag = () => {}
         :key="i.id"
         @click="handleClickTag(i.id)"
       >
-        <view class="tags-item-icon w-100 h-100 rounded-full bg-gray-4"></view>
+        <view class="tags-item-icon w-100 h-100 rounded-full bg-gray-1 p-18">
+          <image :src="i.icon" class="w-full h-full"></image>
+        </view>
         <view class="tags-item-text fs-24 color-gray-5">{{ i.name }}</view>
       </view>
     </view>

@@ -24,7 +24,7 @@ export const http = <T>(options: CustomRequestOptions) => {
           // 2.1 提取核心数据 res.data
           resolve(res.data as IResData<T>)
         } else if (res.statusCode === 401) {
-          // 401错误  -> 清理用户信息，跳转到登录页
+          // 401错误  -> 清理用户信息，跳转到登录页1
           clearUserInfo()
           reject(res)
         } else {
@@ -50,10 +50,10 @@ export const http = <T>(options: CustomRequestOptions) => {
  * @param query 请求query参数
  * @returns
  */
-export const httpGet = <T>(url: string, query?: Record<string, any>) => {
+export const httpGet = <T>(url: string, data?: Record<string, any>) => {
   return http<T>({
     url,
-    query,
+    data,
     method: 'GET',
   })
 }
@@ -65,14 +65,9 @@ export const httpGet = <T>(url: string, query?: Record<string, any>) => {
  * @param query 请求query参数，post请求也支持query，很多微信接口都需要
  * @returns
  */
-export const httpPost = <T>(
-  url: string,
-  data?: Record<string, any>,
-  query?: Record<string, any>,
-) => {
+export const httpPost = <T>(url: string, data?: Record<string, any>) => {
   return http<T>({
     url,
-    query,
     data,
     method: 'POST',
   })

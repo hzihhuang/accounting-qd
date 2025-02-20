@@ -30,7 +30,7 @@ uni-app > uni-tabbar {
     .tags-item {
       &.active {
         .tags-item-icon {
-          background-color: var(--wot-color-theme);
+          background-color: rgba($color: #4d80f0, $alpha: 0.3);
         }
 
         .tags-item-text {

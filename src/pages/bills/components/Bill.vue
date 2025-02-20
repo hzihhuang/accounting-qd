@@ -4,12 +4,15 @@ const { date, list } = defineProps<{
   list: {
     // 收入或支出
     type: 'income' | 'expense'
-    // 标签
-    tag: string
     // 金额
     amount: number
     // 备注
-    remark?: string
+    note?: string
+    // 标签
+    tag: {
+      name: string
+      icon: string
+    }
   }[]
 }>()
 
@@ -28,11 +31,8 @@ const [totalIncome, totalExpense] = computed(() => {
   let income = 0
   let expense = 0
   for (const item of list) {
-    if (item.type === 'income') {
-      income += item.amount
-    } else if (item.type === 'expense') {
-      expense -= item.amount
-    }
+    income += item.amount
+    expense += item.amount
   }
   return [income, expense]
 }).value
@@ -44,7 +44,7 @@ const [totalIncome, totalExpense] = computed(() => {
       <view>{{ dateString }}</view>
       <view class="flex items-center gap-24">
         <view v-show="totalIncome > 0">收入: {{ totalIncome }}</view>
-        <view v-show="totalExpense > 0">支出: {{ totalExpense }}</view>
+        <view v-show="totalExpense < 0">支出: {{ totalExpense }}</view>
       </view>
     </view>
     <view>
@@ -53,9 +53,11 @@ const [totalIncome, totalExpense] = computed(() => {
         v-for="(item, idx) in list"
         :key="idx"
       >
-        <view class="w-48 h-48 rounded-full mr-24 overflow-hidden bg-gray-5"></view>
+        <view class="w-64 h-64 p-12 rounded-full mr-24 overflow-hidden bg-gray-1">
+          <image :src="item.tag.icon" class="w-full h-full"></image>
+        </view>
         <view class="flex-1 flex items-center justify-between bill-item-right color-gray-5">
-          <view class="fs-24">{{ item.tag }}</view>
+          <view class="fs-24">{{ item.note ?? item.tag.name }}</view>
           <view class="fs-28">{{ item.amount }}</view>
         </view>
       </view>

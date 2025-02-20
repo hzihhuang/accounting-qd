@@ -11,7 +11,6 @@ export const useTagsStore = defineStore(
       expenseTags: [],
     })
     onBeforeMount(async () => (tags.value = ((await httpGet('tags')) as any) ?? {}))
-
     return {
       tags,
     }

@@ -14,6 +14,10 @@ page {
   --wot-color-theme: #4d80f0;
 }
 
+view {
+  box-sizing: border-box;
+}
+
 // wd-action-sheet
 .wd-popup-wrapper {
   .wd-overlay {
