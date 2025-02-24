@@ -1,7 +1,11 @@
 // 全局要用的类型放到这里
 
 declare global {
-  type IResData<T> = T
+  type IResData<T> = {
+    code: number
+    data: T
+    message: string
+  }
 
   // uni.uploadFile文件上传参数
   type IUniUploadFileOptions = {

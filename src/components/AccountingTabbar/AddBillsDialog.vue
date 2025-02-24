@@ -36,7 +36,7 @@ const { DEFAULT_DATE, billDate, cacheDate, showDate, handleDateChange } = useBil
         ></wd-segmented>
       </view>
     </view>
-    <view class="flex items-center gap-48 px-32 mt-40">
+    <view class="flex items-center gap-48 px-32 mt-16 h-80">
       <wd-button
         custom-class="flex items-center gap-8 w-180"
         plain
@@ -54,19 +54,27 @@ const { DEFAULT_DATE, billDate, cacheDate, showDate, handleDateChange } = useBil
       />
       <wd-button custom-class="w-180" size="small" @click="handleSubmitAddBill">确定</wd-button>
     </view>
-    <view class="tags grid grid-cols-5 w-fit" :style="{ justifySelf: 'center' }">
-      <view
-        :class="`tags-item flex flex-col items-center gap-8 ${i.id === activeTagId ? 'active' : ''}`"
-        v-for="i in useTags"
-        :key="i.id"
-        @click="handleSwitchTag(i.id)"
-      >
-        <view class="tags-item-icon w-100 h-100 rounded-full bg-gray-1 p-18">
-          <image :src="i.icon" class="w-full h-full"></image>
+    <scroll-view
+      class="h-[calc(100%-220rpx)]"
+      scroll-anchoring
+      scroll-with-animation
+      scroll-y
+      show-scrollbar
+    >
+      <view class="tags grid grid-cols-4 w-fit" :style="{ justifySelf: 'center' }">
+        <view
+          :class="`tags-item flex flex-col items-center gap-8 ${i.id === activeTagId ? 'active' : ''}`"
+          v-for="i in useTags"
+          :key="i.id"
+          @click="handleSwitchTag(i.id)"
+        >
+          <view class="tags-item-icon w-116 h-116 rounded-full bg-gray-1 p-18">
+            <image :src="i.icon" class="w-full h-full tags-item-img"></image>
+          </view>
+          <view class="tags-item-text fs-28 color-gray-5">{{ i.name }}</view>
         </view>
-        <view class="tags-item-text fs-24 color-gray-5">{{ i.name }}</view>
       </view>
-    </view>
+    </scroll-view>
   </wd-popup>
 
   <!-- 日期 -->
@@ -77,5 +85,3 @@ const { DEFAULT_DATE, billDate, cacheDate, showDate, handleDateChange } = useBil
     </view>
   </wd-action-sheet>
 </template>
-
-<style lang="scss" scoped></style>

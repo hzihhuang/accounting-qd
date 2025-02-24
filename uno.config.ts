@@ -36,6 +36,7 @@ const propMap: Record<string, string> = {
   radius: 'border-radius',
   w: 'width',
   h: 'height',
+  'max-h': 'max-height',
   p: 'padding',
   px: 'padding-inline',
   py: 'padding-block',
@@ -111,7 +112,7 @@ export default defineConfig({
       }),
     ],
     [
-      /^(fs|gap|radius|w|h|p|px|py|pl|pt|pr|pb|m|mx|my|ml|mt|mr|mb|right|top|bottom|left)-(\d+)$/,
+      /^(fs|gap|radius|w|h|max-h|p|px|py|pl|pt|pr|pb|m|mx|my|ml|mt|mr|mb|right|top|bottom|left)-(\d+)$/,
       ([, prop, value]) => ({
         [propMap[prop]]: sizeTransformer(value, isMp),
       }),

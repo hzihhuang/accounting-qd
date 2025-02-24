@@ -9,13 +9,14 @@ const useLogin = (user: { username: string; password: string }) => {
   return () => {
     httpPost('auth/login', user)
       .then((res: any) => {
-        uni.setStorageSync('token', res.token)
+        const { token, user } = res.data
+        uni.setStorageSync('token', token)
         setUserInfo({
-          token: res.token,
+          token,
           username: user.username,
           // 使用env中的头像
-          avatar: res.avatar ?? 'https://nest.nodejs.cn/assets/logo-small-gradient.svg',
-          nickname: res.nickname ?? user.username,
+          avatar: user.avatar ?? 'https://nest.nodejs.cn/assets/logo-small-gradient.svg',
+          nickname: user.nickname ?? user.username,
         })
         // 跳转首页
         uni.switchTab({ url: Pages.Home })

@@ -23,9 +23,14 @@ const handleRegister = () => {
   formRef.value.validate().then(({ valid }) => {
     if (valid) {
       showToast().loading('注册中')
-      httpPost('auth/register', registerUser)
+      httpPost('auth/register', {
+        username: registerUser.username,
+        password: registerUser.password,
+      })
         .then((res) => {
-          runLogin()
+          if (res.code === 200) {
+            runLogin()
+          }
         })
         .catch((err) => {
           showToast().error(err.message)

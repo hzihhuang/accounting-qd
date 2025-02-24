@@ -37,7 +37,7 @@ const handleGoRegister = () => {
   })
 }
 
-onBeforeMount(() => {
+onShow(() => {
   if (isLogined.value) {
     uni.switchTab({ url: Pages.Home })
   }

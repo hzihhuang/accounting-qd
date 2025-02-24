@@ -13,10 +13,14 @@ import Bill from './components/Bill.vue'
 import BillHeader from './components/BillHeader.vue'
 import { useBills } from './index'
 
-const { onDelete, onDetail, groupedData } = useBills()
+const time = ref(new Date().getTime())
+const { onDelete, onDetail, groupedData } = useBills(time)
+
+const expenses = computed(() => groupedData.value.reduce((sum, item) => sum + item.expenseSum, 0))
+const incomes = computed(() => groupedData.value.reduce((sum, item) => sum + item.incomeSum, 0))
 </script>
 <template>
-  <BillHeader />
+  <BillHeader v-model="time" :expenses="expenses" :incomes="incomes" />
   <Bill
     :date="item.time"
     v-for="item in groupedData"

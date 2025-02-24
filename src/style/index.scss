@@ -12,9 +12,8 @@ page {
     Helvetica,
     Arial,
     sans-serif;
-  background-color: #f8f9fa;
-  --window-bottom: calc(32rpx + env(safe-area-inset-bottom));
-  --wot-color-theme: #4d80f0;
+  background-color: var(--app-background-color);
+  --app-background-color: #f3f3f3;
 }
 
 view {
@@ -23,6 +22,9 @@ view {
 
 // wd-action-sheet
 .wd-popup-wrapper {
+  .wd-popup--bottom {
+    border-radius: 32rpx 32rpx 0 0;
+  }
   .wd-overlay {
     z-index: 100 !important;
   }

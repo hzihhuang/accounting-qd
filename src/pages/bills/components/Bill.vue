@@ -25,8 +25,8 @@ const [totalIncome, totalExpense] = computed(() => {
   let income = 0
   let expense = 0
   for (const item of list) {
-    income += item.amount
-    expense += item.amount
+    if (item.type === 'income') income += item.amount
+    if (item.type === 'expense') expense += item.amount
   }
   return [income, expense]
 }).value

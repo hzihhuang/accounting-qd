@@ -32,6 +32,10 @@ export const useTabbar = (handleAdd: () => void) => {
     () => uni.getStorageSync('app-tabbar-name') || tabbarList.value[0]?.name,
   )
 
+  onMounted(() => {
+    uni.switchTab({ url: tabbarList.value.find((i) => i.name === currentTabbar.value)?.path })
+  })
+
   function selectTabBar({ value: name }: { value: string }) {
     const item = tabbarList.value.find((i) => i.name === name)
     if (item.name !== 'add') {
@@ -76,9 +80,9 @@ export const useAddBill = (show: globalThis.Ref<boolean, boolean>) => {
   }
   const handleSubmitAddBill = () => {}
 
-  onBeforeMount(() => {
+  onShow(() => {
     httpGet<ITag[]>('tags').then((res) => {
-      tags.value = res
+      tags.value = res.data
     })
   })
 

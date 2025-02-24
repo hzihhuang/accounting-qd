@@ -7,6 +7,11 @@ const show = ref(false)
 const { currentTabbar, selectTabBar, tabbarList } = useTabbar(() => {
   show.value = true
 })
+
+onMounted(() => {
+  // 隐藏原生 tabbar
+  uni.hideTabBar()
+})
 </script>
 
 <template>
