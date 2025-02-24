@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import StatusBar from '@/components/StatusBar.vue'
 import { httpGet } from '@/utils/http'
 
 const { incomes, expenses } = defineProps<{
@@ -13,10 +12,10 @@ onMounted(() => {
   if (process.env.UNI_PLATFORM === 'h5') {
     filterTop.value = 52
   } else {
-    const { statusBarHeight } = uni.getSystemInfoSync()
-    const { top, height } = uni.getMenuButtonBoundingClientRect()
-    const navBarHeight = (top - statusBarHeight) * 2 + height
-    filterTop.value = statusBarHeight + statusBarHeight + navBarHeight
+    // const { statusBarHeight } = uni.getSystemInfoSync()
+    // const { top, height } = uni.getMenuButtonBoundingClientRect()
+    // const navBarHeight = (top - statusBarHeight) * 2 + height
+    // filterTop.value = statusBarHeight + statusBarHeight + navBarHeight
   }
 })
 
@@ -43,10 +42,6 @@ const handleChangeTime = () => {
   time.value = timeCache.value
 }
 
-watchEffect(() => {
-  console.log(new Date(timeCache.value).toLocaleDateString())
-})
-
 // 控制只出现存在数据的日期
 const dates = ref([])
 onShow(() => {
@@ -72,7 +67,6 @@ const formatter = (v, value) => {
 </script>
 
 <template>
-  <StatusBar>账单</StatusBar>
   <view class="px-32 bg-app sticky z-100" :style="{ top: `${filterTop}px` }">
     <view
       class="radius-16 p-24 flex items-center justify-end gap-16 bg-blue-5 color-white"

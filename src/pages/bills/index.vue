@@ -9,8 +9,9 @@
 }
 </route>
 <script lang="ts" setup>
+import StatusBar from '@/components/StatusBar.vue'
 import Bill from './components/Bill.vue'
-import BillHeader from './components/BillHeader.vue'
+import BillFilter from './components/BillFilter.vue'
 import { useBills } from './index'
 
 const time = ref(new Date().getTime())
@@ -20,7 +21,8 @@ const expenses = computed(() => groupedData.value.reduce((sum, item) => sum + it
 const incomes = computed(() => groupedData.value.reduce((sum, item) => sum + item.incomeSum, 0))
 </script>
 <template>
-  <BillHeader v-model="time" :expenses="expenses" :incomes="incomes" />
+  <StatusBar>账单</StatusBar>
+  <BillFilter v-model="time" :expenses="expenses" :incomes="incomes" />
   <Bill
     :date="item.time"
     v-for="item in groupedData"
