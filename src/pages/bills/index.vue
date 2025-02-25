@@ -22,7 +22,12 @@ const incomes = computed(() => groupedData.value.reduce((sum, item) => sum + ite
 </script>
 <template>
   <StatusBar>账单</StatusBar>
-  <BillFilter v-model="time" :expenses="expenses" :incomes="incomes" />
+  <BillFilter
+    :time="time"
+    :expenses="expenses"
+    :incomes="incomes"
+    @changeTime="(t) => (time = t)"
+  />
   <Bill
     :date="item.time"
     v-for="item in groupedData"

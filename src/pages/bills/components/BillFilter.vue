@@ -1,9 +1,14 @@
 <script lang="ts" setup>
+import { getDate } from '@/utils/fun'
 import { httpGet } from '@/utils/http'
 
-const { incomes, expenses } = defineProps<{
+const { incomes, expenses, time } = defineProps<{
   incomes: number
   expenses: number
+  time: number
+}>()
+const emits = defineEmits<{
+  changeTime: [time: number]
 }>()
 
 // 粘性高度
@@ -12,34 +17,25 @@ onMounted(() => {
   if (process.env.UNI_PLATFORM === 'h5') {
     filterTop.value = 52
   } else {
-    // const { statusBarHeight } = uni.getSystemInfoSync()
-    // const { top, height } = uni.getMenuButtonBoundingClientRect()
-    // const navBarHeight = (top - statusBarHeight) * 2 + height
-    // filterTop.value = statusBarHeight + statusBarHeight + navBarHeight
+    const { statusBarHeight } = uni.getSystemInfoSync()
+    const { top, height } = uni.getMenuButtonBoundingClientRect()
+    const navBarHeight = (top - statusBarHeight) * 2 + height
+    filterTop.value = statusBarHeight + navBarHeight
   }
 })
 
 // 筛选日期
 const show = ref(false)
 const timeCache = ref(new Date().getTime())
-const time = defineModel<number>()
-const timeText = computed(() => {
-  const date = new Date(time.value)
-  return {
-    year: date.getFullYear(),
-    month: date.getMonth() + 1,
-  }
-})
 const handleCancel = () => {
   show.value = false
   setTimeout(() => {
-    timeCache.value = time.value
+    timeCache.value = time
   }, 100)
 }
 const handleChangeTime = () => {
   show.value = false
-  console.log(timeCache.value)
-  time.value = timeCache.value
+  emits('changeTime', timeCache.value)
 }
 
 // 控制只出现存在数据的日期
@@ -78,9 +74,9 @@ const formatter = (v, value) => {
       </view>
       <wd-divider color="white" vertical></wd-divider>
       <view class="flex items-center justify-end gap-14">
-        <view class="fs-32 fw-bold">{{ timeText.year }}</view>
+        <view class="fs-32 fw-bold">{{ getDate(time).getFullYear() }}</view>
         <view class="fs-26">年</view>
-        <view class="fs-32 fw-bold">{{ timeText.month }}</view>
+        <view class="fs-32 fw-bold">{{ getDate(time).getMonth() + 1 }}</view>
         <view class="fs-26">月</view>
         <wd-icon custom-class="mr-12" name="filter1" size="18px"></wd-icon>
       </view>

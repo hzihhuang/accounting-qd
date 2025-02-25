@@ -1,4 +1,5 @@
 import { BillInter } from '@/types/bills'
+import { formatTime } from '@/utils/fun'
 import { showToast } from '@/utils/globalToast'
 import { httpDelete, httpGet } from '@/utils/http'
 
@@ -31,15 +32,7 @@ export const useBills = (time: globalThis.Ref<number, number>) => {
     return result
   })
 
-  const curDate = computed(() => {
-    const date = new Date(time.value)
-    const chinaDate = new Date(date.getTime() + 8 * 60 * 60 * 1000) // 转为中国时区
-
-    const year = chinaDate.getFullYear()
-    const month = String(chinaDate.getMonth() + 1).padStart(2, '0') // 补齐前导零
-    const formattedMonth = `${year}-${month}` // 输出 YYYY-MM 格式
-    return formattedMonth
-  })
+  const curDate = computed(() => formatTime(time.value, 'YYYY-MM'))
   const refresh = () => {
     httpGet('bills', {
       page: 1,
@@ -50,7 +43,7 @@ export const useBills = (time: globalThis.Ref<number, number>) => {
     })
   }
 
-  watch([curDate], () => {
+  watch([curDate], (c, v) => {
     refresh()
   })
   onShow(() => refresh())

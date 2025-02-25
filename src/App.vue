@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onLaunch, onShow, onHide } from '@dcloudio/uni-app'
+import { onLaunch, onShow, onPageShow } from '@dcloudio/uni-app'
 import 'abortcontroller-polyfill/dist/abortcontroller-polyfill-only'
 import { useUserStore } from '@/store'
 import { storeToRefs } from 'pinia'
@@ -12,7 +12,6 @@ onLaunch(() => {
   setToastInstance()
 })
 
-// 监听 logined 状态变化
 watch(
   () => isLogined,
   (logined) => {
@@ -27,9 +26,6 @@ onShow(() => {
   if (!isLogined.value && !whiteList.includes(currentPath)) {
     uni.reLaunch({ url: Pages.Login }) // 强制跳转
   }
-})
-onHide(() => {
-  console.log('App Hide')
 })
 </script>
 
