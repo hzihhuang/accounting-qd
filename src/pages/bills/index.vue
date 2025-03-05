@@ -15,7 +15,7 @@ import BillFilter from './components/BillFilter.vue'
 import { useBills } from './index'
 
 const time = ref(new Date().getTime())
-const { onDelete, onDetail, groupedData } = useBills(time)
+const { onDelete, onDetail, groupedData, loading } = useBills(time)
 
 const expenses = computed(() => groupedData.value.reduce((sum, item) => sum + item.expenseSum, 0))
 const incomes = computed(() => groupedData.value.reduce((sum, item) => sum + item.incomeSum, 0))
@@ -28,6 +28,7 @@ const incomes = computed(() => groupedData.value.reduce((sum, item) => sum + ite
     :incomes="incomes"
     @changeTime="(t) => (time = t)"
   />
+  <wd-status-tip v-if="groupedData.length === 0 && !loading" image="content" tip="暂无数据" />
   <Bill
     :date="item.time"
     v-for="item in groupedData"

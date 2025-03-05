@@ -5,6 +5,7 @@ import { httpDelete, httpGet } from '@/utils/http'
 
 export const useBills = (time: globalThis.Ref<number, number>) => {
   const data = ref<BillInter[]>([])
+  const loading = ref(true)
 
   const groupedData = computed(() => {
     if (data.value.length === 0) return []
@@ -34,11 +35,13 @@ export const useBills = (time: globalThis.Ref<number, number>) => {
 
   const curDate = computed(() => formatTime(time.value, 'YYYY-MM'))
   const refresh = () => {
+    loading.value = true
     httpGet('bills', {
       page: 1,
       pageSize: 0,
       date: curDate.value,
     }).then((res: any) => {
+      loading.value = false
       data.value = res.data.list as BillInter[]
     })
   }
@@ -59,6 +62,7 @@ export const useBills = (time: globalThis.Ref<number, number>) => {
 
   return {
     groupedData,
+    loading,
     onDelete,
     onDetail,
   }

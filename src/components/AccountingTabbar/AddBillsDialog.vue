@@ -2,6 +2,17 @@
 import { formatDate, isSameDay } from '@/utils/fun'
 import { IAccountingTypeEnum, useAddBill, useBillDate } from './hook'
 
+const list = [
+  {
+    payload: '支出',
+    value: IAccountingTypeEnum.expense,
+  },
+  {
+    payload: '收入',
+    value: IAccountingTypeEnum.income,
+  },
+]
+
 const show = defineModel<boolean>()
 // 添加账单功能
 const {
@@ -29,11 +40,11 @@ const { DEFAULT_DATE, billDate, cacheDate, showDate, handleDateChange } = useBil
   >
     <view class="flex items-center justify-center relative h-100">
       <view class="w-320">
-        <wd-segmented
-          size="small"
-          :options="Object.keys(IAccountingTypeEnum)"
-          v-model:value="currentType"
-        ></wd-segmented>
+        <wd-segmented size="small" :options="list" v-model:value="currentType">
+          <template #label="{ option }">
+            {{ option.payload }}
+          </template>
+        </wd-segmented>
       </view>
     </view>
     <view class="flex items-center gap-48 px-32 mt-16 h-80">

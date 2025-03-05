@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { getDate } from '@/utils/fun'
+import { getDate, formatTime } from '@/utils/fun'
 import { httpGet } from '@/utils/http'
 
 const { incomes, expenses, time } = defineProps<{
@@ -51,13 +51,14 @@ onShow(() => {
   })
 })
 const formatter = (v, value) => {
+  const [year, month] = formatTime(new Date().getTime(), 'YYYY-MM').split('-')
   if (v === 'year') {
     const yearDates = dates.value.map((item) => item.slice(0, 4))
-    return yearDates.includes(value) ? value : ''
+    return [...yearDates, year].includes(value) ? value : ''
   }
   if (v === 'month') {
     const monthDates = dates.value.map((item) => item.slice(5, 7))
-    return monthDates.includes(value) ? value : ''
+    return [...monthDates, month].includes(value) ? value : ''
   }
 }
 </script>
