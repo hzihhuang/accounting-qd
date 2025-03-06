@@ -65,7 +65,7 @@ onShow(() => {
         :rules="[
           { required: false, pattern: /^[\s\S]{4,20}$/, message: '用户名必须在 4-20 个字符之间' },
         ]"
-        placeholder="请输入用户名"
+        placeholder="用户名"
       />
       <wd-input
         class="mt-40 radius-18 border px-24 py-8"
@@ -81,7 +81,7 @@ onShow(() => {
             message: '密码必须包含字母和数字，且长度为 6-32 个字符',
           },
         ]"
-        placeholder="请输入密码"
+        placeholder="密码"
       />
       <wd-button
         class="mt-50"
