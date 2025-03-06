@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>记账小程序原型图 - 预算设置</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      background: linear-gradient(135deg, #f6f9fc, #edf2f7);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .phone-frame {
+      width: 375px;
+      height: 667px;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      position: relative;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      animation: fadeIn 0.6s ease-out;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #ffffff, #f8f9fa);
+      padding: 20px;
+      color: #333;
+      text-align: center;
+      position: relative;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .header h1 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .back-btn {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #4299E1;
+      cursor: pointer;
+    }
+
+    .main-content {
+      padding: 20px;
+    }
+
+    .budget-card {
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 20px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      animation: fadeIn 0.6s ease-out;
+    }
+
+    .budget-input {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .budget-input label {
+      font-size: 16px;
+      color: #2D3748;
+      margin-right: 10px;
+    }
+
+    .budget-input input {
+      flex: 1;
+      padding: 12px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      font-size: 16px;
+      background: rgba(255, 255, 255, 0.9);
+      color: #2D3748;
+    }
+
+    .budget-input input:focus {
+      outline: none;
+      border-color: #4299E1;
+      box-shadow: 0 0 0 2px rgba(66, 153, 225, 0.2);
+    }
+
+    .budget-tips {
+      font-size: 14px;
+      color: #718096;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .save-btn {
+      background: #4299E1;
+      color: white;
+      border: none;
+      padding: 15px;
+      width: 100%;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .save-btn:hover {
+      background: #3182CE;
+    }
+
+    .save-btn:active {
+      transform: scale(0.98);
+    }
+
+    .category-budget {
+      margin-top: 30px;
+    }
+
+    .category-budget h2 {
+      font-size: 18px;
+      color: #2D3748;
+      margin-bottom: 15px;
+    }
+
+    .category-item {
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 12px;
+      margin-bottom: 10px;
+    }
+
+    .category-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(66, 153, 225, 0.1);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+    }
+
+    .category-icon i {
+      color: #4299E1;
+      font-size: 20px;
+    }
+
+    .category-info {
+      flex: 1;
+    }
+
+    .category-name {
+      font-size: 16px;
+      color: #2D3748;
+      margin-bottom: 4px;
+    }
+
+    .category-budget-amount {
+      font-size: 14px;
+      color: #718096;
+    }
+
+    .category-edit {
+      color: #4299E1;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="phone-frame">
+    <div class="header">
+      <div class="back-btn">
+        <i class="fas fa-chevron-left"></i>
+      </div>
+      <h1>预算设置</h1>
+    </div>
+
+    <div class="main-content">
+      <div class="budget-card">
+        <div class="budget-input">
+          <label>每月总预算</label>
+          <input type="number" placeholder="请输入预算金额" value="5000">
+        </div>
+        <div class="budget-tips">
+          <p>设置每月预算可以帮助您更好地控制支出</p>
+          <p>系统会根据您的预算情况提供消费建议</p>
+        </div>
+        <button class="save-btn">保存设置</button>
+      </div>
+
+      <div class="category-budget">
+        <h2>分类预算</h2>
+        <div class="category-item">
+          <div class="category-icon">
+            <i class="fas fa-utensils"></i>
+          </div>
+          <div class="category-info">
+            <div class="category-name">餐饮</div>
+            <div class="category-budget-amount">预算：¥2,000</div>
+          </div>
+          <div class="category-edit">
+            <i class="fas fa-chevron-right"></i>
+          </div>
+        </div>
+
+        <div class="category-item">
+          <div class="category-icon">
+            <i class="fas fa-shopping-bag"></i>
+          </div>
+          <div class="category-info">
+            <div class="category-name">购物</div>
+            <div class="category-budget-amount">预算：¥1,500</div>
+          </div>
+          <div class="category-edit">
+            <i class="fas fa-chevron-right"></i>
+          </div>
+        </div>
+
+        <div class="category-item">
+          <div class="category-icon">
+            <i class="fas fa-bus"></i>
+          </div>
+          <div class="category-info">
+            <div class="category-name">交通</div>
+            <div class="category-budget-amount">预算：¥800</div>
+          </div>
+          <div class="category-edit">
+            <i class="fas fa-chevron-right"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 返回按钮点击事件
+    document.querySelector('.back-btn').addEventListener('click', () => {
+      window.history.back();
+    });
+
+    // 保存按钮点击事件
+    document.querySelector('.save-btn').addEventListener('click', () => {
+      const budgetAmount = document.querySelector('.budget-input input').value;
+      alert(`预算已更新为：¥${budgetAmount}`);
+    });
+
+    // 分类预算点击事件
+    document.querySelectorAll('.category-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const categoryName = item.querySelector('.category-name').textContent;
+        const currentBudget = item.querySelector('.category-budget-amount').textContent;
+        alert(`设置${categoryName}预算\n${currentBudget}`);
+      });
+    });
+  </script>
+</body>
+
+</html>
