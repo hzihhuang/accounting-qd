@@ -13,7 +13,9 @@ page {
     Arial,
     sans-serif;
   background-color: var(--app-background-color);
-  --app-background-color: #f3f3f3;
+  --app-background-color: white;
+  --app-primary-color: #4299e1;
+  --wot-button-primary-bg-color: var(--app-primary-color);
 }
 
 view {
