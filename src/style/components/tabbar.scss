@@ -1,13 +1,16 @@
 uni-app > uni-tabbar {
   display: none !important;
 }
+
 .wd-tabbar.wd-tabbar--round {
   margin-bottom: 32rpx;
 }
+
 .wd-tabbar__placeholder {
   box-sizing: content-box;
   padding-bottom: calc(env(safe-area-inset-bottom) + 64rpx) !important;
 }
+
 .wd-tabbar.accounting-tabbar {
   .tabbar-item-add {
     flex: unset;
@@ -24,6 +27,13 @@ uni-app > uni-tabbar {
 .add-tag-popup {
   z-index: 100;
   height: 80vh;
+
+  // 金额输入框
+  .wd-input.add-bills-dialog-input input {
+    text-align: center;
+  }
+
+  // 标签
   .tags {
     gap: 30rpx 60rpx;
     padding: 32rpx 0;
@@ -33,6 +43,7 @@ uni-app > uni-tabbar {
       &.active {
         .tags-item-icon {
           background-color: #4d80f0;
+
           .tags-item-img {
             filter: invert(1);
           }

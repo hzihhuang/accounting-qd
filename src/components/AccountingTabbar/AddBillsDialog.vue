@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { formatDate, isSameDay } from '@/utils/fun'
+import { formatTime, isSameDay } from '@/utils/fun'
 import { IAccountingTypeEnum, useAddBill, useBillDate } from './hook'
 
 const list = [
@@ -16,8 +16,10 @@ const list = [
 const show = defineModel<boolean>()
 // 添加账单功能
 const {
-  useTags,
   activeTagId,
+  amount,
+  date,
+  useTags,
   currentType,
   handleCloseAddBill,
   handleSubmitAddBill,
@@ -49,24 +51,24 @@ const { DEFAULT_DATE, billDate, cacheDate, showDate, handleDateChange } = useBil
     </view>
     <view class="flex items-center gap-48 px-32 mt-16 h-80">
       <wd-button
-        custom-class="flex items-center gap-8 w-180"
+        custom-class="flex items-center gap-8 w-160"
         plain
         size="small"
         icon="time-filled"
         @click="showDate = true"
       >
-        {{ isSameDay(DEFAULT_DATE, billDate) ? '今天' : formatDate(billDate) }}
+        {{ isSameDay(DEFAULT_DATE, billDate) ? '今天' : formatTime(billDate, 'YY/MM/DD') }}
       </wd-button>
       <wd-input
-        class="flex-1 text-center"
+        class="add-bills-dialog-input flex-1"
         type="number"
         placeholder="请输入金额"
         inputmode="numeric"
       />
-      <wd-button custom-class="w-180" size="small" @click="handleSubmitAddBill">确定</wd-button>
+      <wd-button custom-class="w-160" size="small" @click="handleSubmitAddBill">确定</wd-button>
     </view>
     <scroll-view
-      class="h-[calc(100%-220rpx)]"
+      class="h-[calc(100%-224rpx)]"
       scroll-anchoring
       scroll-with-animation
       scroll-y
@@ -79,7 +81,7 @@ const { DEFAULT_DATE, billDate, cacheDate, showDate, handleDateChange } = useBil
           :key="i.id"
           @click="handleSwitchTag(i.id)"
         >
-          <view class="tags-item-icon w-116 h-116 rounded-full bg-gray-1 p-18">
+          <view class="tags-item-icon w-110 h-110 rounded-full bg-gray-1 p-18">
             <image :src="i.icon" class="w-full h-full tags-item-img"></image>
           </view>
           <view class="tags-item-text fs-28 color-gray-5">{{ i.name }}</view>

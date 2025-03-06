@@ -70,7 +70,10 @@ export const useAddBill = (show: globalThis.Ref<boolean, boolean>) => {
         return tags.value
     }
   })
+
   const activeTagId = ref()
+  const amount = ref(0)
+  const date = ref(new Date().getTime())
 
   const handleSwitchTag = (id: number) => {
     activeTagId.value = id
@@ -78,7 +81,9 @@ export const useAddBill = (show: globalThis.Ref<boolean, boolean>) => {
   const handleCloseAddBill = () => {
     show.value = false
   }
-  const handleSubmitAddBill = () => {}
+  const handleSubmitAddBill = () => {
+    console.log(activeTagId.value)
+  }
 
   onShow(() => {
     httpGet<ITag[]>('tags').then((res) => {
@@ -89,6 +94,8 @@ export const useAddBill = (show: globalThis.Ref<boolean, boolean>) => {
   return {
     useTags,
     activeTagId,
+    amount,
+    date,
     currentType,
     handleCloseAddBill,
     handleSubmitAddBill,
