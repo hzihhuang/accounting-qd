@@ -17,7 +17,7 @@ uni-app > uni-tabbar {
     width: 100rpx;
     height: 100rpx;
     color: white;
-    background-color: #597fe8;
+    background-color: var(--wot-color-theme);
     border-radius: 999px;
     transform: translateY(-30%);
     --wot-tabbar-inactive-color: white;

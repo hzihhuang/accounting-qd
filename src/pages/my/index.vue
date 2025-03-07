@@ -49,10 +49,6 @@ const handleLogout = () => {
       </view>
     </view>
   </view>
-  <!-- <view class="flex flex-col gap-48 items-center px-64">
-    <view class="fs-48">{{ userInfo.nickname }}</view>
-    <wd-button class="w-full" @click="handleLogout">退出登录</wd-button>
-  </view> -->
 </template>
 
 <style lang="scss">
@@ -101,7 +97,6 @@ const handleLogout = () => {
     border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 40rpx;
     box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.1);
-    animation: fadeIn 0.6s ease-out;
 
     .my-menu-item {
       display: flex;
