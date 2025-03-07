@@ -57,7 +57,6 @@ onShow(() => {
   <view class="px-64">
     <wd-form ref="formRef" :model="user">
       <wd-input
-        class="radius-18 border px-24 py-8"
         prefix-icon="user"
         prop="username"
         clearable
@@ -68,7 +67,7 @@ onShow(() => {
         placeholder="用户名"
       />
       <wd-input
-        class="mt-40 radius-18 border px-24 py-8"
+        class="mt-40"
         prefix-icon="lock-on"
         prop="password"
         show-password

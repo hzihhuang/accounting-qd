@@ -1,0 +1,9 @@
+.wd-input {
+  padding: 8rpx 24rpx;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 18rpx;
+
+  &::after {
+    content: unset !important;
+  }
+}

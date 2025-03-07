@@ -55,7 +55,6 @@ const handleBack = () =>
   <view class="px-64">
     <wd-form ref="formRef" :model="registerUser">
       <wd-input
-        class="radius-18 border px-24 py-8"
         prefix-icon="user"
         prop="username"
         clearable
@@ -66,7 +65,7 @@ const handleBack = () =>
         placeholder="用户名"
       />
       <wd-input
-        class="radius-18 border px-24 py-8 mt-40"
+        class="mt-40"
         prefix-icon="lock-on"
         prop="password"
         show-password
@@ -82,7 +81,7 @@ const handleBack = () =>
         placeholder="设置密码"
       />
       <wd-input
-        class="radius-18 border px-24 py-8 mt-40"
+        class="mt-40"
         prefix-icon="lock-on"
         prop="confirmPassword"
         show-password
