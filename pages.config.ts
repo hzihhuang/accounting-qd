@@ -13,20 +13,7 @@ export default defineUniPages({
     navigationBarTextStyle: 'black',
     navigationBarBackgroundColor: '#fff', // 导航栏背景颜色
   },
-  pages: [
-    {
-      path: 'pages/home/index',
-      style: {
-        navigationBarTitleText: '首页',
-      },
-    },
-    {
-      path: 'pages/chart/index',
-      style: {
-        navigationBarTitleText: '图表',
-      },
-    },
-  ],
+  pages: [],
   tabBar: {
     custom: true,
     color: '#999',

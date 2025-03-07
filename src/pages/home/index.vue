@@ -7,10 +7,12 @@
   },
 }
 </route>
+
+<script setup lang="ts">
+import StatusBar from '@/components/StatusBar.vue'
+</script>
 <template>
-  <view class="home flex gap-24">
-    <view class="fs-48">222</view>
-  </view>
+  <StatusBar>记账本</StatusBar>
 </template>
 
 <style lang="scss"></style>

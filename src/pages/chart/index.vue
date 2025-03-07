@@ -9,9 +9,11 @@
 }
 </route>
 <template>
-  <view class="mt-4">图表</view>
+  <StatusBar>图表</StatusBar>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import StatusBar from '@/components/StatusBar.vue'
+</script>
 
 <style></style>

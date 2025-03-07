@@ -16,6 +16,7 @@
       "type": "home",
       "layout": "tabbar",
       "style": {
+        "navigationStyle": "custom",
         "navigationBarTitleText": "首页"
       }
     },
@@ -37,7 +38,7 @@
     },
     {
       "path": "pages/bills/index",
-      "type": "about",
+      "type": "bills",
       "layout": "tabbar",
       "style": {
         "navigationStyle": "custom",
@@ -49,6 +50,7 @@
       "type": "about",
       "layout": "tabbar",
       "style": {
+        "navigationStyle": "custom",
         "navigationBarTitleText": "图表"
       }
     },
