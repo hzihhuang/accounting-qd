@@ -10,8 +10,8 @@
 
 <script setup lang="ts"></script>
 <template>
-  <view class="home-header">
-    <view class="home-header-title">记账本</view>
+  <view class="page-header p-40">
+    <view>记账本</view>
     <view class="home-header-budget">
       <view class="mb-20">本月预算剩余</view>
       <wd-progress custom-class="h-16" :percentage="30" hide-text />
@@ -54,27 +54,15 @@
 </template>
 
 <style lang="scss">
-.home-header {
-  position: sticky;
-  top: 0;
-  padding: 40rpx;
-  color: #333;
-  background: linear-gradient(135deg, #ffffff, #f8f9fa);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  .home-header-title {
-    font-size: 48rpx;
-    font-weight: 600;
-  }
-  .home-header-budget {
-    --wot-progress-height: 16rpx;
-    padding: 30rpx;
-    margin-top: 30rpx;
-    font-size: 28rpx;
-    color: #718096;
-    background: rgba(255, 255, 255, 0.7);
-    border-radius: 24rpx;
-    box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.05);
-  }
+.home-header-budget {
+  --wot-progress-height: 16rpx;
+  padding: 30rpx;
+  margin-top: 30rpx;
+  font-size: 28rpx;
+  color: #718096;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 24rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.05);
 }
 
 .home-transaction-item {

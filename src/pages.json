@@ -51,7 +51,7 @@
       "layout": "tabbar",
       "style": {
         "navigationStyle": "custom",
-        "navigationBarTitleText": "图表"
+        "navigationBarTitleText": "统计"
       }
     },
     {
