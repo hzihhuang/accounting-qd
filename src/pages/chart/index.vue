@@ -83,7 +83,6 @@ watch(filterList, (v) => {
 <style lang="scss">
 .chart-overview-card {
   padding: 40rpx;
-  margin-bottom: 40rpx;
   color: white;
   background: linear-gradient(135deg, #4299e1, #63b3ed);
   border-radius: 40rpx;
@@ -93,7 +92,6 @@ watch(filterList, (v) => {
 .chart-card {
   height: 400rpx;
   padding: 40rpx;
-  margin-bottom: 40rpx;
   border: 2rpx solid rgba(255, 255, 255, 0.18);
   border-radius: 40rpx;
   box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.06);
