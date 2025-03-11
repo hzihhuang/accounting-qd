@@ -13,6 +13,14 @@
 import { useUserStore } from '@/store'
 import { showToast } from '@/utils/globalToast'
 import { storeToRefs } from 'pinia'
+import {
+  faTags,
+  faFileExport,
+  faSignOutAlt,
+  faChevronRight,
+  faCog,
+} from '@fortawesome/free-solid-svg-icons'
+import Icon from '@/components/Icon.vue'
 
 const { clearUserInfo } = useUserStore()
 const { userInfo } = storeToRefs(useUserStore())
@@ -32,19 +40,24 @@ const handleLogout = () => {
   <view class="my-menu-list">
     <view class="my-menu-group">
       <view class="my-menu-item">
-        <wd-icon name="star-on" size="40rpx"></wd-icon>
+        <Icon class="fs-40" :name="faTags"></Icon>
         <text class="flex-1">预算管理</text>
-        <wd-icon name="arrow-right" size="48rpx"></wd-icon>
+        <Icon :name="faChevronRight" />
       </view>
       <view class="my-menu-item">
-        <wd-icon name="star-on" size="40rpx"></wd-icon>
+        <Icon class="fs-40" :name="faFileExport"></Icon>
         <text class="flex-1">导出账单</text>
-        <wd-icon name="arrow-right" size="48rpx"></wd-icon>
+        <Icon :name="faChevronRight" />
+      </view>
+      <view class="my-menu-item">
+        <Icon class="fs-40" :name="faCog"></Icon>
+        <text class="flex-1">系统设置</text>
+        <Icon :name="faChevronRight" />
       </view>
     </view>
     <view class="my-menu-group">
       <view class="my-menu-item logout" @click="handleLogout">
-        <wd-icon name="star-on" size="40rpx"></wd-icon>
+        <Icon class="fs-40" :name="faSignOutAlt"></Icon>
         <text class="flex-1">退出登录</text>
       </view>
     </view>

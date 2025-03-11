@@ -10,6 +10,7 @@ export interface BillInter {
   date: string
   // 标签
   tag?: {
+    id: number
     name: string
     icon: string
   }

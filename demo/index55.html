@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>图标库</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+      }
+
+      body {
+        padding: 20px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+        background-color: #f7fafc;
+      }
+
+      .container {
+        max-width: 1200px;
+        padding: 20px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .header {
+        margin-bottom: 30px;
+      }
+
+      .category-title {
+        padding-left: 10px;
+        margin: 30px 0 15px;
+        font-size: 18px;
+        font-weight: 600;
+        color: #2d3748;
+        border-left: 4px solid #4299e1;
+      }
+
+      .icons-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 20px;
+      }
+
+      .icon-item {
+        padding: 15px;
+        text-align: center;
+        cursor: pointer;
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+      }
+
+      .icon-item:hover {
+        border-color: #4299e1;
+        transform: translateY(-2px);
+      }
+
+      .icon-item i {
+        margin-bottom: 8px;
+        font-size: 24px;
+        color: #4a5568;
+      }
+
+      .icon-name {
+        font-size: 12px;
+        color: #718096;
+        word-break: break-all;
+      }
+
+      .copy-message {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        display: none;
+        padding: 8px 16px;
+        color: white;
+        background: #48bb78;
+        border-radius: 4px;
+        transform: translateX(-50%);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>图标库</h1>
+      </div>
+
+      <!-- 支出类图标 -->
+      <div class="category-title">支出类</div>
+      <div class="icons-grid">
+        <div class="icon-item">
+          <div>
+            <i class="fas fa-utensils"></i>
+            <span class="icon-name">餐饮</span>
+          </div>
+        </div>
+        <div class="icon-item">
+          <div>
+            <i class="fas fa-coffee"></i>
+            <span class="icon-name">咖啡</span>
+          </div>
+        </div>
+        <div class="icon-item">
+          <div>
+            <i class="fas fa-hamburger"></i>
+            <span class="icon-name">快餐</span>
+          </div>
+        </div>
+        <div class="icon-item">
+          <div>
+            <i class="fas fa-shopping-cart"></i>
+            <span class="icon-name">购物</span>
+          </div>
+        </div>
+        <div class="icon-item">
+          <div>
+            <i class="fas fa-shopping-bag"></i>
+            <span class="icon-name">购物袋</span>
+          </div>
+        </div>
+        <div class="icon-item">
+          <div>
+            <i class="fas fa-tshirt"></i>
+            <span class="icon-name">服装</span>
+          </div>
+        </div>
+        <div class="icon-item">
+          <div>
+            <i class="fas fa-bus"></i>
+            <span class="icon-name">公交</span>
+          </div>
+        </div>
+        <div class="icon-item">
+          <div>
+            <i class="fas fa-car"></i>
+            <span class="icon-name">汽车</span>
+          </div>
+        </div>
+        <div class="icon-item">
+          <div>
+            <i class="fas fa-taxi"></i>
+            <span class="icon-name">出租车</span>
+          </div>
+        </div>
+        <div class="icon-item">
+          <div>
+            <i class="fas fa-subway"></i>
+            <span class="icon-name">地铁</span>
+          </div>
+        </div>
+        <div class="icon-item">
+          <div>
+            <i class="fas fa-plane"></i>
+            <span class="icon-name">飞机</span>
+          </div>
+        </div>
+        <div class="icon-item">
+          <div>
+            <i class="fas fa-home"></i>
+            <span class="icon-name">住房</span>
+          </div>
+        </div>
+        <div class="icon-item">
+          <div>
+            <i class="fas fa-building"></i>
+            <span class="icon-name">房租</span>
+          </div>
+        </div>
+        <div class="icon-item">
+          <div>
+            <i class="fas fa-gamepad"></i>
+            <span class="icon-name">游戏</span>
+          </div>
+        </div>
+        <div class="icon-item">
+          <div>
+            <i class="fas fa-film"></i>
+            <span class="icon-name">电影</span>
+          </div>
+        </div>
+        <div class="icon-item">
+          <div>
+            <i class="fas fa-music"></i>
+            <span class="icon-name">音乐</span>
+          </div>
+        </div>
+        <div class="icon-item">
+          <div>
+            <i class="fas fa-book"></i>
+            <span class="icon-name">书籍</span>
+          </div>
+        </div>
+        <div class="icon-item">
+          <div>
+            <i class="fas fa-graduation-cap"></i>
+            <span class="icon-name">教育</span>
+          </div>
+        </div>
+        <div class="icon-item">
+          <div>
+            <i class="fas fa-hospital"></i>
+            <span class="icon-name">医疗</span>
+          </div>
+        </div>
+        <div class="icon-item">
+          <div>
+            <i class="fas fa-pills"></i>
+            <span class="icon-name">药品</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 收入类图标 -->
+      <div class="category-title">收入类</div>
+      <div class="icons-grid">
+        <div class="icon-item">
+          <div>
+            <i class="fas fa-money-bill-wave"></i>
+            <span class="icon-name">工资</span>
+          </div>
+        </div>
+        <div class="icon-item">
+          <div>
+            <i class="fas fa-coins"></i>
+            <span class="icon-name">奖金</span>
+          </div>
+        </div>
+        <div class="icon-item">
+          <div>
+            <i class="fas fa-dollar-sign"></i>
+            <span class="icon-name">投资收益</span>
+          </div>
+        </div>
+        <div class="icon-item">
+          <div>
+            <i class="fas fa-gift"></i>
+            <span class="icon-name">礼金</span>
+          </div>
+        </div>
+        <div class="icon-item">
+          <div>
+            <i class="fas fa-briefcase"></i>
+            <span class="icon-name">兼职</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 通用类图标 -->
+      <div class="category-title">通用类</div>
+      <div class="icons-grid">
+        <div class="icon-item">
+          <div>
+            <i class="fas fa-wallet"></i>
+            <span class="icon-name">钱包</span>
+          </div>
+        </div>
+        <div class="icon-item">
+          <div>
+            <i class="fas fa-credit-card"></i>
+            <span class="icon-name">信用卡</span>
+          </div>
+        </div>
+        <div class="icon-item">
+          <div>
+            <i class="fas fa-store"></i>
+            <span class="icon-name">商店</span>
+          </div>
+        </div>
+        <div class="icon-item">
+          <div>
+            <i class="fas fa-shopping-basket"></i>
+            <span class="icon-name">购物篮</span>
+          </div>
+        </div>
+        <div class="icon-item">
+          <div>
+            <i class="fas fa-heartbeat"></i>
+            <span class="icon-name">健康</span>
+          </div>
+        </div>
+        <div class="icon-item">
+          <div>
+            <i class="fas fa-dumbbell"></i>
+            <span class="icon-name">健身</span>
+          </div>
+        </div>
+        <div class="icon-item">
+          <div>
+            <i class="fas fa-running"></i>
+            <span class="icon-name">运动</span>
+          </div>
+        </div>
+        <div class="icon-item">
+          <div>
+            <i class="fas fa-baby"></i>
+            <span class="icon-name">婴儿</span>
+          </div>
+        </div>
+        <div class="icon-item">
+          <div>
+            <i class="fas fa-birthday-cake"></i>
+            <span class="icon-name">生日</span>
+          </div>
+        </div>
+        <div class="icon-item">
+          <div>
+            <i class="fas fa-phone"></i>
+            <span class="icon-name">电话</span>
+          </div>
+        </div>
+        <div class="icon-item">
+          <div>
+            <i class="fas fa-wifi"></i>
+            <span class="icon-name">网络</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 项目其他icon -->
+      <div class="category-title">项目其他icon</div>
+      <div class="icons-grid">
+        <div class="icon-item">
+          <div>
+            <i class="fas fa-user"></i>
+            <span class="icon-name">我的</span>
+          </div>
+        </div>
+        <div class="icon-item">
+          <div>
+            <i class="fas fa-chart-bar"></i>
+            <span class="icon-name">图表</span>
+          </div>
+        </div>
+        <div class="icon-item">
+          <div>
+            <i class="fas fa-book-open"></i>
+            <span class="icon-name">账本</span>
+          </div>
+        </div>
+        <div class="icon-item">
+          <div>
+            <i class="fas fa-calendar-alt"></i>
+            <span class="icon-name">日历</span>
+          </div>
+        </div>
+        <div class="icon-item">
+          <div>
+            <i class="fas fa-cog"></i>
+            <span class="icon-name">设置</span>
+          </div>
+        </div>
+        <div class="icon-item">
+          <div>
+            <i class="fas fa-bell"></i>
+            <span class="icon-name">通知</span>
+          </div>
+        </div>
+        <div class="icon-item">
+          <div>
+            <i class="fas fa-search"></i>
+            <span class="icon-name">搜索</span>
+          </div>
+        </div>
+        <div class="icon-item">
+          <div>
+            <i class="fas fa-tags"></i>
+            <span class="icon-name">标签</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="copy-message">已复制图标代码</div>
+
+    <script>
+      document.querySelectorAll('.icon-item').forEach((item) => {
+        item.addEventListener('click', () => {
+          const iconName = item.querySelector('.icon-name').textContent
+          navigator.clipboard.writeText(iconName)
+
+          const copyMessage = document.querySelector('.copy-message')
+          copyMessage.style.display = 'block'
+          setTimeout(() => {
+            copyMessage.style.display = 'none'
+          }, 2000)
+        })
+      })
+    </script>
+  </body>
+</html>
