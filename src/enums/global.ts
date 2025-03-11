@@ -10,3 +10,8 @@ export enum TimeTypeEnum {
   Month = 'month',
   Year = 'year',
 }
+
+
+// 标签id
+export enum IconEnum {
+}

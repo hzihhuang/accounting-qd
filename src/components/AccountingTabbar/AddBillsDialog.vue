@@ -1,14 +1,15 @@
 <script lang="ts" setup>
 import { formatTime, isSameDay } from '@/utils/fun'
 import { IAccountingTypeEnum, useAddBill, useBillDate } from './hook'
+import Segmented from '../Segmented.vue'
 
 const list = [
   {
-    payload: '支出',
+    label: '支出',
     value: IAccountingTypeEnum.expense,
   },
   {
-    payload: '收入',
+    label: '收入',
     value: IAccountingTypeEnum.income,
   },
 ]
@@ -40,14 +41,21 @@ const { DEFAULT_DATE, billDate, cacheDate, showDate, handleDateChange } = useBil
     closable
     :safe-area-inset-bottom="true"
   >
-    <view class="flex items-center justify-center relative h-100">
-      <view class="w-320">
-        <wd-segmented size="small" :options="list" v-model:value="currentType">
-          <template #label="{ option }">
-            {{ option.payload }}
-          </template>
-        </wd-segmented>
+    <view class="p-40 flex flex-col gap-40">
+      <view class="fs-32 fw-600 color-[#2D3748]">新增账单</view>
+      <Segmented class="mx-10" :list="list" v-model="currentType" />
+      <wd-input
+        class="add-bills-dialog-input"
+        type="number"
+        placeholder="¥0.00"
+        inputmode="numeric"
+      />
+      <view>
+        <view class="fs-28 color-[#718096] mb-20">选择分类</view>
       </view>
+      <view></view>
+      <view></view>
+      <wd-button size="large" :round="false" @click="handleSubmitAddBill">保存</wd-button>
     </view>
     <view class="flex items-center gap-48 px-32 mt-16 h-80">
       <wd-button
@@ -59,13 +67,6 @@ const { DEFAULT_DATE, billDate, cacheDate, showDate, handleDateChange } = useBil
       >
         {{ isSameDay(DEFAULT_DATE, billDate) ? '今天' : formatTime(billDate, 'YY/MM/DD') }}
       </wd-button>
-      <wd-input
-        class="add-bills-dialog-input flex-1"
-        type="number"
-        placeholder="请输入金额"
-        inputmode="numeric"
-      />
-      <wd-button custom-class="w-160" size="small" @click="handleSubmitAddBill">确定</wd-button>
     </view>
     <scroll-view
       class="h-[calc(100%-224rpx)]"

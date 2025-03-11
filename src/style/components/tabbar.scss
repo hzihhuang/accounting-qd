@@ -29,8 +29,12 @@ uni-app > uni-tabbar {
   height: 80vh;
 
   // 金额输入框
-  .wd-input.add-bills-dialog-input input {
-    text-align: center;
+  .wd-input.add-bills-dialog-input {
+    padding: 30rpx;
+    input {
+      text-align: center;
+      font-size: 48rpx;
+    }
   }
 
   // 标签

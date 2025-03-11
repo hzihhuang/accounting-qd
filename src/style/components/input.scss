@@ -3,6 +3,10 @@
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 18rpx;
 
+  &:focus,
+  &:focus-within {
+    border-color: #4299e1;
+  }
   &::after {
     content: unset !important;
   }
