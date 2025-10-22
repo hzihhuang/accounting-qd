@@ -2,8 +2,6 @@
 import { formatTime, isSameDay } from '@/utils/fun'
 import { IAccountingTypeEnum, useAddBill, useBillDate } from './hook'
 import Segmented from '../Segmented.vue'
-import Icon from '@/components/Icon.vue'
-import { TagsIcons } from '@/enums/tags'
 
 const list = [
   {
@@ -86,10 +84,7 @@ const { DEFAULT_DATE, billDate, cacheDate, showDate, handleDateChange } = useBil
         >
           <view
             class="tags-item-icon w-110 h-110 flex items-center justify-center rounded-full bg-gray-1 p-18"
-          >
-            <Icon class="fs-48" :name="TagsIcons[i.id]" />
-            <!-- <image :src="i.icon" class="w-full h-full tags-item-img"></image> -->
-          </view>
+          ></view>
           <view class="tags-item-text fs-28 color-gray-5">{{ i.name }}</view>
         </view>
       </view>

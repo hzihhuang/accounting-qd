@@ -6,6 +6,7 @@
 export {}
 declare global {
   const EffectScope: typeof import('vue')['EffectScope']
+  const a: typeof import('../hooks/a')['default']
   const computed: typeof import('vue')['computed']
   const createApp: typeof import('vue')['createApp']
   const customRef: typeof import('vue')['customRef']
@@ -81,6 +82,7 @@ declare global {
   const useLogin: typeof import('../hooks/useLogin')['default']
   const useModel: typeof import('vue')['useModel']
   const useNavbarWeixin: (typeof import('../hooks/useNavbarWeixin'))['default']
+  const useRenderIcon: typeof import('../hooks/useRenderIcon')['useRenderIcon']
   const useRequest: typeof import('../hooks/useRequest')['default']
   const useSlots: typeof import('vue')['useSlots']
   const useTemplateRef: typeof import('vue')['useTemplateRef']

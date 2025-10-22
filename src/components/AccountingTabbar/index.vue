@@ -1,15 +1,14 @@
 <script lang="ts" setup>
 import { useTabbar } from './hook'
 import AddBillsDialog from './AddBillsDialog.vue'
-import { faHouse, faChartBar, faBookOpen, faUser, faAdd } from '@fortawesome/free-solid-svg-icons'
-import Icon from '../Icon.vue'
+import { IconifyIconOnline } from '@/components/Icon'
 
 const TabbarIcons = {
-  home: faHouse,
-  chart: faChartBar,
-  list: faBookOpen,
-  user: faUser,
-  add: faAdd,
+  home: 'flowbite:home-solid',
+  chart: 'ion:bar-chart',
+  bills: 'mingcute:bill-fill',
+  my: 'solar:user-bold',
+  add: 'mingcute:add-fill',
 }
 
 // 核心切换 tabbar 能力
@@ -41,7 +40,10 @@ const { currentTabbar, selectTabBar, tabbarList } = useTabbar(() => {
         <view
           :class="`mb-4 ${i.name === 'add' ? 'color-white fs-44' : ''} ${currentTabbar === i.name ? 'color-[var(--app-primary-color)]' : 'color-gray-700'}`"
         >
-          <Icon :name="TabbarIcons[i.icon]" />
+          <IconifyIconOnline
+            :class="`${i.name === 'add' ? 'fs-50 mt-8' : 'fs-40'}`"
+            :icon="TabbarIcons[i.name]"
+          />
         </view>
       </template>
     </wd-tabbar-item>

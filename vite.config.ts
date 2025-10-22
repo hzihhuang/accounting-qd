@@ -18,9 +18,10 @@ import AutoImport from 'unplugin-auto-import/vite'
 import ViteRestart from 'vite-plugin-restart'
 import { copyNativeRes } from './vite-plugins/copyNativeRes'
 import postcssPxToViewport from 'postcss-px-to-viewport'
+import { vitePluginFakeServer } from 'vite-plugin-fake-server'
 
 // https://vitejs.dev/config/
-export default ({ command, mode }) => {
+export default async ({ command, mode }) => {
   // console.log(mode === process.env.NODE_ENV) // true
 
   // mode: 区分生产环境还是开发环境
@@ -46,6 +47,8 @@ export default ({ command, mode }) => {
     VITE_APP_PROXY_PREFIX,
   } = env
   console.log('环境变量 env -> ', env)
+
+  const Icons = await import('unplugin-icons/vite').then((m) => m.default)
 
   return defineConfig({
     envDir: './env', // 自定义env目录
@@ -84,9 +87,20 @@ export default ({ command, mode }) => {
         eslintrc: { enabled: true },
         vueTemplate: true, // default false
       }),
-
+      // mock支持
+      vitePluginFakeServer({
+        logger: false,
+        include: 'mock',
+        infixName: false,
+        enableProd: true,
+      }),
+      // 自动按需加载图标
+      Icons({
+        compiler: 'vue3',
+        scale: 1,
+      }),
+      // 通过这个插件，在修改vite.config.js文件则不需要重新运行也生效配置
       ViteRestart({
-        // 通过这个插件，在修改vite.config.js文件则不需要重新运行也生效配置
         restart: ['vite.config.js'],
       }),
       // h5环境增加 BUILD_TIME 和 BUILD_BRANCH
@@ -98,13 +112,13 @@ export default ({ command, mode }) => {
       },
       // 打包分析插件，h5 + 生产环境才弹出
       UNI_PLATFORM === 'h5' &&
-      mode === 'production' &&
-      visualizer({
-        filename: './node_modules/.cache/visualizer/stats.html',
-        open: true,
-        gzipSize: true,
-        brotliSize: true,
-      }),
+        mode === 'production' &&
+        visualizer({
+          filename: './node_modules/.cache/visualizer/stats.html',
+          open: true,
+          gzipSize: true,
+          brotliSize: true,
+        }),
       // 只有在 app 平台时才启用 copyNativeRes 插件
       UNI_PLATFORM === 'app' && copyNativeRes(),
     ],
@@ -117,31 +131,31 @@ export default ({ command, mode }) => {
         plugins:
           UNI_PLATFORM === 'h5'
             ? [
-              postcssPxToViewport({
-                unitToConvert: 'px', // 需要转换的单位
-                viewportWidth: 750 / 3.75 / 2 / 2, // 设计稿宽度
-                viewportUnit: 'rpx', // 目标单位
-                fontViewportUnit: 'rpx', // 字体单位
-              }),
-              postcssPxToViewport({
-                unitToConvert: 'rpx',
-                viewportWidth: 750,
-                viewportUnit: 'vw',
-                fontViewportUnit: 'vw',
-              }),
-              // autoprefixer({
-              //   // 指定目标浏览器
-              //   overrideBrowserslist: ['> 1%', 'last 2 versions'],
-              // }),
-            ]
+                postcssPxToViewport({
+                  unitToConvert: 'px', // 需要转换的单位
+                  viewportWidth: 750 / 3.75 / 2 / 2, // 设计稿宽度
+                  viewportUnit: 'rpx', // 目标单位
+                  fontViewportUnit: 'rpx', // 字体单位
+                }),
+                postcssPxToViewport({
+                  unitToConvert: 'rpx',
+                  viewportWidth: 750,
+                  viewportUnit: 'vw',
+                  fontViewportUnit: 'vw',
+                }),
+                // autoprefixer({
+                //   // 指定目标浏览器
+                //   overrideBrowserslist: ['> 1%', 'last 2 versions'],
+                // }),
+              ]
             : [
-              postcssPxToViewport({
-                unitToConvert: 'px',
-                viewportWidth: 750 / 3.75 / 2 / 2,
-                viewportUnit: 'rpx',
-                fontViewportUnit: 'rpx',
-              }),
-            ],
+                postcssPxToViewport({
+                  unitToConvert: 'px',
+                  viewportWidth: 750 / 3.75 / 2 / 2,
+                  viewportUnit: 'rpx',
+                  fontViewportUnit: 'rpx',
+                }),
+              ],
       },
     },
 
@@ -158,12 +172,12 @@ export default ({ command, mode }) => {
       // 仅 H5 端生效，其他端不生效（其他端走build，不走devServer)
       proxy: JSON.parse(VITE_APP_PROXY)
         ? {
-          [VITE_APP_PROXY_PREFIX]: {
-            target: VITE_SERVER_BASEURL,
-            changeOrigin: true,
-            rewrite: (path) => path.replace(new RegExp(`^${VITE_APP_PROXY_PREFIX}`), ''),
-          },
-        }
+            [VITE_APP_PROXY_PREFIX]: {
+              target: VITE_SERVER_BASEURL,
+              changeOrigin: true,
+              rewrite: (path) => path.replace(new RegExp(`^${VITE_APP_PROXY_PREFIX}`), ''),
+            },
+          }
         : undefined,
     },
     build: {

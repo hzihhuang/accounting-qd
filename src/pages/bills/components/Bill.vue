@@ -1,7 +1,5 @@
 <script lang="ts" setup>
 import { BillInter } from '@/types/bills'
-import Icon from '@/components/Icon.vue'
-import { TagsIcons } from '@/enums/tags'
 
 const { date, list } = defineProps<{
   date: string
@@ -50,9 +48,7 @@ const [totalIncome, totalExpense] = computed(() => {
       >
         <view
           class="w-64 h-64 p-12 rounded-full mr-24 flex items-center justify-center overflow-hidden bg-gray-1"
-        >
-          <Icon class="color-[var(--app-primary-color)]" :name="TagsIcons[item.tag.id]" />
-        </view>
+        ></view>
         <view class="flex-1 flex items-center justify-between bill-item-right color-gray-5">
           <view class="fs-24">{{ item.note ?? item.tag.name }}</view>
           <view class="fs-28">{{ item.amount }}</view>

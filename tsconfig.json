@@ -22,6 +22,7 @@
       "wot-design-uni/global.d.ts",
       "z-paging/types",
       "./src/typings.d.ts",
+      "unplugin-icons/types/vue",
       "@types/node"
     ]
   },
@@ -30,12 +31,13 @@
   },
   "exclude": ["node_modules"],
   "include": [
+    "src/**/*.json",
+    "mock/*.ts",
     "src/**/*.ts",
-    "src/**/*.js",
-    "src/**/*.d.ts",
     "src/**/*.tsx",
-    "src/**/*.jsx",
     "src/**/*.vue",
-    "src/**/*.json"
+    "types/*.d.ts",
+    "vite.config.ts",
+    "builds/**/*.ts"
   ]
 }
