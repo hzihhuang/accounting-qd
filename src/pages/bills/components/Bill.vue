@@ -25,8 +25,8 @@ const [totalIncome, totalExpense] = computed(() => {
   let income = 0
   let expense = 0
   for (const item of list) {
-    if (item.type === 'income') income += item.amount
-    if (item.type === 'expense') expense += item.amount
+    if (item.type === 'income') income += item.price
+    if (item.type === 'expense') expense += item.price
   }
   return [income, expense]
 }).value
@@ -51,7 +51,7 @@ const [totalIncome, totalExpense] = computed(() => {
         ></view>
         <view class="flex-1 flex items-center justify-between bill-item-right color-gray-5">
           <view class="fs-24">{{ item.note ?? item.tag.name }}</view>
-          <view class="fs-28">{{ item.amount }}</view>
+          <view class="fs-28">{{ item.price }}</view>
         </view>
       </view>
       <template #right>

@@ -43,4 +43,53 @@ export default defineFakeRoute([
       }
     },
   },
+  {
+    url: '/bills',
+    method: 'get',
+    response: ({ body }) => {
+      return {
+        success: true,
+        data: {
+          list: [
+            {
+              id: 1,
+              type: 'expense',
+              price: 100,
+              remark: '无',
+              date: new Date().toLocaleDateString(),
+              tag: {
+                id: 3,
+                name: '交通',
+                img: 'https://avatars.githubusercontent.com/u/52823142',
+              },
+            },
+            {
+              id: 2,
+              type: 'expense',
+              price: 100,
+              remark: '无',
+              date: new Date().toLocaleDateString(),
+              tag: {
+                id: 3,
+                name: '交通',
+                img: 'https://avatars.githubusercontent.com/u/52823142',
+              },
+            },
+            {
+              id: 3,
+              type: 'income',
+              price: 100,
+              remark: '无',
+              date: new Date().toLocaleDateString(),
+              tag: {
+                id: 3,
+                name: '交通',
+                img: 'https://avatars.githubusercontent.com/u/52823142',
+              },
+            },
+          ],
+        },
+      }
+    },
+  },
 ])

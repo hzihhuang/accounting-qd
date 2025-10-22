@@ -25,9 +25,9 @@ export const useBills = (time: globalThis.Ref<number, number>) => {
       group.list.push(item)
       // 累加收入和支出
       if (item.type === 'income') {
-        group.incomeSum += item.amount
+        group.incomeSum += item.price
       } else if (item.type === 'expense') {
-        group.expenseSum += item.amount
+        group.expenseSum += item.price
       }
     })
     return result

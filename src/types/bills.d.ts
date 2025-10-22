@@ -3,7 +3,7 @@ export interface BillInter {
   // 收入或支出
   type: 'income' | 'expense'
   // 金额
-  amount: number
+  price: number
   // 备注
   note?: string
   // 日期
