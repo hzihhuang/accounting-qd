@@ -4,7 +4,7 @@ import { httpGet } from '@/utils/http'
 export interface ITag {
   id: number
   name: string
-  icon: string
+  img: string
   type: IAccountingTypeEnum
 }
 export enum IAccountingTypeEnum {
@@ -72,7 +72,7 @@ export const useAddBill = (show: globalThis.Ref<boolean, boolean>) => {
   })
 
   const activeTagId = ref()
-  const amount = ref(0)
+  const price = ref(0)
   const date = ref(new Date().getTime())
 
   const handleSwitchTag = (id: number) => {
@@ -94,7 +94,7 @@ export const useAddBill = (show: globalThis.Ref<boolean, boolean>) => {
   return {
     useTags,
     activeTagId,
-    amount,
+    price,
     date,
     currentType,
     handleCloseAddBill,

@@ -12,17 +12,7 @@
 <template>
   <view class="page-header p-40">
     <view>记账本</view>
-    <view class="home-header-budget">
-      <view class="mb-20">本月预算剩余</view>
-      <wd-progress custom-class="h-16" :percentage="30" hide-text />
-      <view class="flex justify-between mt-20">
-        <text>已使用: ¥3,500</text>
-        <text>总预算: ¥5,000</text>
-      </view>
-    </view>
-  </view>
-  <view class="px-40 pt-40">
-    <view class="flex text-center radius-40 p-40 mb-40 bg-[#fafafa]">
+    <view class="home-header-budget flex text-center">
       <div class="flex-1">
         <div class="fs-28 color-[#718096]">本月支出</div>
         <div class="mt-10 fs-40 fw-600 color-[#E53E3E]">¥3500</div>
@@ -36,6 +26,16 @@
         <div class="mt-10 fs-40 fw-600 color-[#2D3748]">¥4500</div>
       </div>
     </view>
+    <view class="home-header-budget">
+      <view class="mb-20">本月预算剩余</view>
+      <wd-progress custom-class="h-16" :percentage="30" hide-text />
+      <view class="flex justify-between mt-20">
+        <text>已使用: ¥3,500</text>
+        <text>总预算: ¥5,000</text>
+      </view>
+    </view>
+  </view>
+  <view class="px-40">
     <view class="home-transaction-item" v-for="item in 24" :key="item">
       <view
         class="w-80 h-80 bg-[#eef4fc] color-[#4299e1] mr-30 flex items-center justify-center radius-40"

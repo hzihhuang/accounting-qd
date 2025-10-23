@@ -26,14 +26,16 @@ uni-app > uni-tabbar {
 
 .add-tag-popup {
   z-index: 100;
+  display: flex;
+  flex-direction: column;
   height: 80vh;
 
   // 金额输入框
   .wd-input.add-bills-dialog-input {
     padding: 30rpx;
     input {
-      text-align: center;
       font-size: 48rpx;
+      text-align: center;
     }
   }
 
