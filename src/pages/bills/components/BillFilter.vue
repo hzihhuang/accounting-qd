@@ -64,7 +64,7 @@ const formatter = (v, value) => {
 </script>
 
 <template>
-  <view class="px-32 bg-app sticky z-100" :style="{ top: `${filterTop}px` }">
+  <view class="px-24 bg-app sticky z-100" :style="{ top: `${filterTop}px` }">
     <view
       class="radius-16 p-24 flex items-center justify-end gap-16 bg-blue-5 color-white"
       @click="show = true"

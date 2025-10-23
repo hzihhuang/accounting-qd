@@ -67,6 +67,7 @@ const handleLogout = () => {
   text-align: center;
   background: linear-gradient(135deg, #ffffff, #f8f9fa);
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
   .my-avatar {
     box-sizing: border-box;
     width: 180rpx;
@@ -79,11 +80,13 @@ const handleLogout = () => {
     box-shadow: 0 16rpx 64rpx rgba(0, 0, 0, 0.1);
     transition: transform 0.3 sease;
   }
+
   .my-username {
     margin-bottom: 10rpx;
     font-size: 32rpx;
     font-weight: bold;
   }
+
   .my-userID {
     font-size: 28rpx;
     opacity: 0.8;
@@ -92,7 +95,7 @@ const handleLogout = () => {
 
 .my-menu-list {
   box-sizing: border-box;
-  padding: 40rpx;
+  padding: 40rpx 24rpx;
 
   .my-menu-group {
     margin-bottom: 40rpx;

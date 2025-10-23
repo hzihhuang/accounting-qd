@@ -13,6 +13,9 @@ import Segmented from '@/components/Segmented.vue'
 import { TimeTypeEnum, TransactionTypeEnum } from '@/enums/global'
 import { getWeeks, getMonths, getYears } from './utils'
 import Bubbles from '@/components/Bubbles.vue'
+import ChartBar from '@/components/ChartBar.vue'
+import ChartLine from '@/components/ChartLine.vue'
+import ChartPic from '@/components/ChartPic.vue'
 
 // 收入 or 支出
 const type = ref<TransactionTypeEnum>(TransactionTypeEnum.Expense)
@@ -39,9 +42,9 @@ watch(filterList, (v) => {
 })
 </script>
 <template>
-  <view class="page-header pt-40 pb-40">
+  <view class="page-header pt-24 pb-24">
     <view>消费统计</view>
-    <view class="flex gap-20 px-40 mt-30">
+    <view class="flex gap-20 px-24 mt-30">
       <Segmented
         class="flex-1"
         v-model="type"
@@ -60,22 +63,25 @@ watch(filterList, (v) => {
         ]"
       />
     </view>
-    <Bubbles class="mt-40 mb-20 px-60" v-model="bubbleType" :list="filterList" />
+    <Bubbles class="mt-40 mb-20 px-24" v-model="bubbleType" :list="filterList" />
   </view>
-  <view class="flex flex-col gap-40 p-40">
+  <view class="flex flex-col gap-40 p-24">
     <view class="chart-overview-card">
       <view class="fs-28 opacity-90">本周总支出</view>
       <view class="my-20 fs-56 fw-600">¥2,750</view>
       <view class="fs-28 opacity-90">较上周减少12.5%</view>
     </view>
     <view class="chart-card">
-      <view class="fs-32 fw-600 color-[#2D3748] mb-30">趋势分析</view>
+      <view class="fs-32 fw-600 color-[#2D3748] mb-30 px-40">趋势分析</view>
+      <ChartLine />
     </view>
     <view class="chart-card">
-      <view class="fs-32 fw-600 color-[#2D3748] mb-30">分类占比</view>
+      <view class="fs-32 fw-600 color-[#2D3748] mb-30 px-40">分类占比</view>
+      <ChartPic />
     </view>
     <view class="chart-card">
-      <view class="fs-32 fw-600 color-[#2D3748] mb-30">金额排行</view>
+      <view class="fs-32 fw-600 color-[#2D3748] mb-30 px-40">金额排行</view>
+      <ChartBar />
     </view>
   </view>
 </template>
@@ -90,8 +96,8 @@ watch(filterList, (v) => {
 }
 
 .chart-card {
-  height: 400rpx;
-  padding: 40rpx;
+  height: auto;
+  padding: 40rpx 12rpx;
   border: 2rpx solid rgba(255, 255, 255, 0.18);
   border-radius: 40rpx;
   box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.06);

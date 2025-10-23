@@ -19,4 +19,21 @@ export default defineFakeRoute([
       }
     },
   },
+  {
+    url: '/auth/register',
+    method: 'post',
+    response: ({ body }) => {
+      return {
+        success: true,
+        code: 200,
+        data: {
+          token: 'asdfghjkl', // 生成token
+          user: {
+            username: 'common',
+            nickname: '小林',
+          },
+        },
+      }
+    },
+  },
 ])

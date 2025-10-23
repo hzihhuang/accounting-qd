@@ -1,7 +1,8 @@
 .wd-card.wd-card.bill-card {
   padding: 0 0 12rpx;
-  margin: 32rpx 32rpx;
+  margin: 32rpx 24rpx;
 }
+
 .bill-item + .bill-item {
   .bill-item-right {
     &::before {

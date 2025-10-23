@@ -41,7 +41,7 @@ const { DEFAULT_DATE, billDate, cacheDate, showDate, handleDateChange } = useBil
     closable
     :safe-area-inset-bottom="true"
   >
-    <view class="p-40 flex flex-col gap-32">
+    <view class="p-24 flex flex-col gap-32">
       <view class="fs-32 fw-600 color-[#2D3748]">新增账单</view>
       <Segmented :list="list" v-model="currentType" />
       <wd-input
@@ -62,7 +62,7 @@ const { DEFAULT_DATE, billDate, cacheDate, showDate, handleDateChange } = useBil
       </wd-button>
     </view>
     <scroll-view class="flex-1" scroll-anchoring scroll-with-animation scroll-y show-scrollbar>
-      <view class="tags grid grid-cols-4 w-fit" :style="{ justifySelf: 'center' }">
+      <view class="tags grid grid-cols-5 w-fit" :style="{ justifySelf: 'center' }">
         <view
           :class="`tags-item flex flex-col items-center gap-8 ${i.id === activeTagId ? 'active' : ''}`"
           v-for="i in useTags"

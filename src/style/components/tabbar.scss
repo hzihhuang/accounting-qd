@@ -33,6 +33,7 @@ uni-app > uni-tabbar {
   // 金额输入框
   .wd-input.add-bills-dialog-input {
     padding: 30rpx;
+
     input {
       font-size: 48rpx;
       text-align: center;
@@ -41,7 +42,7 @@ uni-app > uni-tabbar {
 
   // 标签
   .tags {
-    gap: 30rpx 60rpx;
+    gap: 24rpx 32rpx;
     padding: 32rpx 0;
     margin: 0 auto;
 

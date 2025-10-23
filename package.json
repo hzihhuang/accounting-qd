@@ -110,7 +110,6 @@
     "pinia-plugin-persistedstate": "4.2.0",
     "qs": "6.5.3",
     "unplugin-icons": "^22.5.0",
-    "vite-plugin-fake-server": "^2.2.0",
     "vue": "3.5.13",
     "vue-i18n": "^9.1.9",
     "wot-design-uni": "^1.6.1",
@@ -172,6 +171,7 @@
     "unocss-applet": "^0.7.8",
     "unplugin-auto-import": "^0.17.8",
     "vite": "5.2.8",
+    "vite-plugin-fake-server": "^2.2.0",
     "vite-plugin-restart": "^0.4.2",
     "vue-tsc": "^2.2.0"
   }

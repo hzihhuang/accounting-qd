@@ -10,7 +10,7 @@
 
 <script setup lang="ts"></script>
 <template>
-  <view class="page-header p-40">
+  <view class="page-header p-24">
     <view>记账本</view>
     <view class="home-header-budget flex text-center">
       <div class="flex-1">
@@ -35,7 +35,7 @@
       </view>
     </view>
   </view>
-  <view class="px-40">
+  <view class="px-24">
     <view class="home-transaction-item" v-for="item in 24" :key="item">
       <view
         class="w-80 h-80 bg-[#eef4fc] color-[#4299e1] mr-30 flex items-center justify-center radius-40"
