@@ -26,8 +26,9 @@ if (isMp) {
   )
 }
 
-const sizeTransformer = (value: string, isMp: boolean) =>
-  !isMp ? `${(Number(value) / 7.5).toFixed(2)}vw` : `${value}rpx`
+const sizeTransformer = (value: string, isMp: boolean) => {
+  return !isMp ? `${(Number(value) / 7.5).toFixed(2)}vw` : `${value}rpx`
+}
 
 // 属性映射表
 const propMap: Record<string, string> = {

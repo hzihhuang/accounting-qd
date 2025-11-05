@@ -7,7 +7,7 @@ const useLogin = (user: { username: string; password: string }) => {
   const { setUserInfo } = useUserStore()
 
   return () => {
-    httpPost('auth/login', user)
+    httpPost('user/login', user)
       .then((res: any) => {
         const { token, user } = res.data
         uni.setStorageSync('token', token)

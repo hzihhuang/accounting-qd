@@ -25,20 +25,20 @@ const [totalIncome, totalExpense] = computed(() => {
   let income = 0
   let expense = 0
   for (const item of list) {
-    if (item.type === 'income') income += item.price
-    if (item.type === 'expense') expense += item.price
+    if (item.category.type === 'income') income += item.price
+    if (item.category.type === 'expense') expense += item.price
   }
   return [income, expense]
 }).value
 </script>
 
 <template>
-  <wd-card custom-class="bill-card">
+  <wd-card custom-class="bill-card shadow-lg">
     <view class="flex justify-between items-center fs-24 color-gray-4 pt-32 pb-20 px-32">
       <view>{{ dateString }}</view>
       <view class="flex items-center gap-24">
         <view v-show="totalIncome > 0">收入: {{ totalIncome }}</view>
-        <view v-show="totalExpense < 0">支出: {{ totalExpense }}</view>
+        <view v-show="totalExpense > 0">支出: {{ totalExpense }}</view>
       </view>
     </view>
     <wd-swipe-action v-for="item in list" :key="item.id">
@@ -48,9 +48,11 @@ const [totalIncome, totalExpense] = computed(() => {
       >
         <view
           class="w-64 h-64 p-12 rounded-full mr-24 flex items-center justify-center overflow-hidden bg-gray-1"
-        ></view>
+        >
+          <image :src="item.category.img" class="w-full h-full" />
+        </view>
         <view class="flex-1 flex items-center justify-between bill-item-right color-gray-5">
-          <view class="fs-24">{{ item.note ?? item.tag.name }}</view>
+          <view class="fs-24">{{ item.remark ?? item.category.name }}</view>
           <view class="fs-28">{{ item.price }}</view>
         </view>
       </view>

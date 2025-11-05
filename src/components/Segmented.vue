@@ -24,14 +24,14 @@ const { list } = defineProps<{
   padding: 8rpx;
   border: 2rpx solid rgba(0, 0, 0, 0.1);
   border-radius: 16rpx;
-  .my-segmented-item {
-    flex: 1;
-    padding: 16rpx;
-    font-size: 28rpx;
-    text-align: center;
-    cursor: pointer;
-    border-radius: 12rpx;
-    transition: all 0.3s ease;
-  }
+}
+.my-segmented .my-segmented-item {
+  flex: 1;
+  padding: 16rpx;
+  font-size: 28rpx;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 12rpx;
+  transition: all 0.3s ease;
 }
 </style>

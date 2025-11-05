@@ -86,7 +86,7 @@ export const useAddBill = (show: globalThis.Ref<boolean, boolean>) => {
   }
 
   onShow(() => {
-    httpGet<ITag[]>('tags').then((res) => {
+    httpGet<ITag[]>('category').then((res) => {
       tags.value = res.data
     })
   })

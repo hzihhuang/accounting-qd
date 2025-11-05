@@ -5,6 +5,7 @@ declare global {
     code: number
     data: T
     message: string
+    success: boolean
   }
 
   // uni.uploadFile文件上传参数

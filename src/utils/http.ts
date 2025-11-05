@@ -73,6 +73,12 @@ export const httpPost = <T>(url: string, data?: Record<string, any>) => {
   })
 }
 
+/**
+ * DELETE 请求
+ * @param url 后台地址
+ * @param query 请求query参数
+ * @returns
+ */
 export const httpDelete = <T>(url: string, id: number) => {
   return http<T>({
     url: `${url}/${id}`,

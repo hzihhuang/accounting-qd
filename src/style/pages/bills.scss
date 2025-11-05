@@ -1,6 +1,9 @@
 .wd-card.wd-card.bill-card {
   padding: 0 0 12rpx;
   margin: 32rpx 24rpx;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 40rpx;
+  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.1);
 }
 
 .bill-item + .bill-item {

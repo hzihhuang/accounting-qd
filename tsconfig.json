@@ -22,7 +22,6 @@
       "wot-design-uni/global.d.ts",
       "z-paging/types",
       "./src/typings.d.ts",
-      "unplugin-icons/types/vue",
       "@types/node"
     ]
   },

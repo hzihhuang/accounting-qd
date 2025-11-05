@@ -15,8 +15,8 @@ import { storeToRefs } from 'pinia'
 
 const { isLogined } = storeToRefs(useUserStore())
 const user = reactive({
-  username: '',
-  password: '',
+  username: 'hzihhuang',
+  password: 'a123456789',
 })
 const runLogin = useLogin(user)
 const formRef = ref()
@@ -67,7 +67,7 @@ onShow(() => {
         placeholder="用户名"
       />
       <wd-input
-        class="mt-40"
+        custom-class="mt-40"
         prefix-icon="lock-on"
         prop="password"
         show-password
@@ -83,7 +83,7 @@ onShow(() => {
         placeholder="密码"
       />
       <wd-button
-        class="mt-50"
+        custom-class="mt-50"
         size="large"
         type="primary"
         @click="handleLogin"

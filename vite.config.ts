@@ -48,8 +48,6 @@ export default async ({ command, mode }) => {
   } = env
   console.log('环境变量 env -> ', env)
 
-  const Icons = await import('unplugin-icons/vite').then((m) => m.default)
-
   return defineConfig({
     envDir: './env', // 自定义env目录
 
@@ -93,11 +91,6 @@ export default async ({ command, mode }) => {
         include: 'mock',
         infixName: false,
         enableProd: true,
-      }),
-      // 自动按需加载图标
-      Icons({
-        compiler: 'vue3',
-        scale: 1,
       }),
       // 通过这个插件，在修改vite.config.js文件则不需要重新运行也生效配置
       ViteRestart({
