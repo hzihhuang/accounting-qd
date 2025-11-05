@@ -18,6 +18,7 @@ declare global {
   }
 
   type IUserInfo = {
+    id?: number
     nickname?: string
     avatar?: string
     username?: string

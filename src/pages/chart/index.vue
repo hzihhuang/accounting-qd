@@ -17,6 +17,14 @@ import ChartBar from '@/components/ChartBar.vue'
 import ChartLine from '@/components/ChartLine.vue'
 import ChartPic from '@/components/ChartPic.vue'
 
+const statusBarHeightRef = ref(0)
+onShow(() => {
+  if (!(process.env.UNI_PLATFORM === 'h5')) {
+    const { statusBarHeight } = uni.getSystemInfoSync()
+    statusBarHeightRef.value = statusBarHeight
+  }
+})
+
 // 收入 or 支出
 const type = ref<TransactionTypeEnum>(TransactionTypeEnum.Expense)
 // 周月年
@@ -42,7 +50,10 @@ watch(filterList, (v) => {
 })
 </script>
 <template>
-  <view class="page-header pt-24 pb-24">
+  <view
+    class="page-header pt-24 pb-24"
+    :style="{ paddingTop: `${statusBarHeightRef === 0 ? '24rpx' : `${statusBarHeightRef}px`}` }"
+  >
     <view>消费统计</view>
     <view class="flex gap-20 px-24 mt-30">
       <Segmented

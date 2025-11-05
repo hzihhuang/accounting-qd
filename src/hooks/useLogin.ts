@@ -13,6 +13,7 @@ const useLogin = (user: { username: string; password: string }) => {
         uni.setStorageSync('token', token)
         setUserInfo({
           token,
+          id: user.id,
           username: user.username,
           // 使用env中的头像
           avatar: user.avatar ?? 'https://nest.nodejs.cn/assets/logo-small-gradient.svg',

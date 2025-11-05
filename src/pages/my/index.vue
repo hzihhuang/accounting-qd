@@ -10,13 +10,20 @@
 </route>
 
 <script lang="ts" setup>
-import { IconifyIconOnline } from '@/components/Icon'
 import { useUserStore } from '@/store'
 import { showToast } from '@/utils/globalToast'
 import { storeToRefs } from 'pinia'
 
 const { clearUserInfo } = useUserStore()
 const { userInfo } = storeToRefs(useUserStore())
+
+const statusBarHeightRef = ref(0)
+onShow(() => {
+  if (process.env.UNI_PLATFORM === 'h5') {
+    const { statusBarHeight } = uni.getSystemInfoSync()
+    statusBarHeightRef.value = statusBarHeight
+  }
+})
 
 const handleLogout = () => {
   clearUserInfo()
@@ -25,32 +32,32 @@ const handleLogout = () => {
 </script>
 
 <template>
-  <view class="my-header">
+  <view class="my-header" :style="{ marginTop: statusBarHeightRef + 'px' }">
     <image class="my-avatar" :src="userInfo.avatar"></image>
-    <view class="my-username">{{ userInfo.nickname }}</view>
-    <view class="my-userID">ID: 8888</view>
+    <view class="my-username">「{{ userInfo.username }}」 {{ userInfo.nickname }}</view>
+    <view class="my-userID">ID: {{ userInfo.id }}</view>
   </view>
   <view class="my-menu-list">
     <view class="my-menu-group">
       <view class="my-menu-item">
-        <IconifyIconOnline class="fs-40" icon="lets-icons:money" />
+        <text class="fs-40 i-carbon-calculator"></text>
         <text class="flex-1">预算管理</text>
-        <IconifyIconOnline icon="weui:arrow-filled" />
+        <text class="i-carbon-chevron-right" />
       </view>
       <view class="my-menu-item">
-        <IconifyIconOnline class="fs-40" icon="tabler:tag" />
+        <text class="fs-40 i-carbon-tag"></text>
         <text class="flex-1">类别管理</text>
-        <IconifyIconOnline class="fs-40" icon="weui:arrow-filled" />
+        <text class="i-carbon-chevron-right" />
       </view>
       <view class="my-menu-item">
-        <IconifyIconOnline class="fs-40" icon="lets-icons:setting-alt-line" />
+        <text class="fs-40 i-carbon-settings"></text>
         <text class="flex-1">通用设置</text>
-        <IconifyIconOnline class="fs-40" icon="weui:arrow-filled" />
+        <text class="i-carbon-chevron-right" />
       </view>
     </view>
     <view class="my-menu-group">
       <view class="my-menu-item logout" @click="handleLogout">
-        <IconifyIconOnline class="fs-40" icon="material-symbols:logout-rounded" />
+        <text class="fs-40 i-carbon-logout" />
         <text class="flex-1">退出登录</text>
       </view>
     </view>

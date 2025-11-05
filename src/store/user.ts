@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
 const initState = {
-  nickname: '今年必发财',
+  nickname: '',
   avatar: 'https://nest.nodejs.cn/assets/logo-small-gradient.svg',
   token: '',
 }

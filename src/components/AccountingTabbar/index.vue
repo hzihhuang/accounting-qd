@@ -1,21 +1,20 @@
 <script lang="ts" setup>
 import { useTabbar } from './hook'
 import AddBillsDialog from './AddBillsDialog.vue'
-import { IconifyIconOnline } from '@/components/Icon'
-
-const TabbarIcons = {
-  home: 'flowbite:home-solid',
-  chart: 'ion:bar-chart',
-  bills: 'mingcute:bill-fill',
-  my: 'solar:user-bold',
-  add: 'mingcute:add-fill',
-}
 
 // 核心切换 tabbar 能力
 const show = ref(false)
 const { currentTabbar, selectTabBar, tabbarList } = useTabbar(() => {
   show.value = true
 })
+
+const TabbarIcons = {
+  home: 'i-carbon-home',
+  chart: 'i-carbon-chart-line-smooth',
+  list: 'i-carbon-list',
+  user: 'i-carbon-user',
+  add: 'i-carbon-add',
+}
 </script>
 
 <template>
@@ -38,12 +37,9 @@ const { currentTabbar, selectTabBar, tabbarList } = useTabbar(() => {
     >
       <template #icon>
         <view
-          :class="`mb-4 ${i.name === 'add' ? 'color-white fs-44' : ''} ${currentTabbar === i.name ? 'color-[var(--app-primary-color)]' : 'color-gray-700'}`"
+          :class="`mb-4 ${i.name === 'add' ? 'color-white fs-64' : ''} ${currentTabbar === i.name ? 'color-[var(--app-primary-color)]' : 'color-gray-700'}`"
         >
-          <IconifyIconOnline
-            :class="`${i.name === 'add' ? 'fs-50 mt-8' : 'fs-40'}`"
-            :icon="TabbarIcons[i.name]"
-          />
+          <text :class="TabbarIcons[i.icon]"></text>
         </view>
       </template>
     </wd-tabbar-item>

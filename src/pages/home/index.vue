@@ -8,9 +8,28 @@
 }
 </route>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const statusBarOption = reactive({
+  statusBarHeight: 0,
+})
+onShow(() => {
+  if (process.env.UNI_PLATFORM === 'h5') {
+    Object.assign(statusBarOption, {
+      statusBarHeight: 0,
+    })
+  } else {
+    const { statusBarHeight } = uni.getSystemInfoSync()
+    statusBarOption.statusBarHeight = statusBarHeight
+  }
+})
+</script>
 <template>
-  <view class="page-header p-24">
+  <view
+    class="page-header p-24"
+    :style="{
+      paddingTop: `${statusBarOption.statusBarHeight === 0 ? '24rpx' : `${statusBarOption.statusBarHeight}px`}`,
+    }"
+  >
     <view>记账本</view>
     <view class="home-header-budget flex text-center">
       <div class="flex-1">
