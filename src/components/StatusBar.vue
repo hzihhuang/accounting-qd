@@ -23,7 +23,6 @@ onShow(() => {
   <view
     class="color-black flex items-center justify-center fs-32 fw-bold sticky top-0 z-100"
     :style="{
-      backgroundColor: 'var(--app-background-color)',
       paddingTop: `${statusBarOption.statusBarHeight}px`,
       height: `${statusBarOption.navBarHeight + statusBarOption.statusBarHeight}px`,
     }"

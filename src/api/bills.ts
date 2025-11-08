@@ -1,5 +1,5 @@
-import { BillInter } from '@/types/bills'
-import { httpDelete, httpGet } from '@/utils/http'
+import { AddBillBody, BillInter } from '@/types/bills'
+import { httpDelete, httpGet, httpPost } from '@/utils/http'
 
 type billsApiRes = {
   list: BillInter[]
@@ -10,5 +10,7 @@ type billsApiRes = {
 }
 
 export const getBillsApi = (params) => httpGet<billsApiRes>('bills', params)
+
+export const addBillApi = (data: AddBillBody) => httpPost('bills', data)
 
 export const deleteBillApi = (id: number) => httpDelete('bills', id)

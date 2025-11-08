@@ -1,3 +1,5 @@
+import dayjs from 'dayjs'
+
 // 判断是不是同一天
 export const isSameDay = (date1: number, date2: number) => {
   const d1 = new Date(date1)
@@ -33,3 +35,36 @@ export const formatTime = (timestamp: number, format: string = 'YYYY-MM-DD') => 
 
 // 时间对象
 export const getDate = (time: string | number) => new Date(time)
+
+export const getDateString = (time: string) => {
+  const now = new Date()
+  const target = new Date(time)
+
+  // 重置时间为 00:00:00 进行比较
+  const nowDate = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+  const targetDate = new Date(target.getFullYear(), target.getMonth(), target.getDate())
+
+  const diff = nowDate.getTime() - targetDate.getTime()
+  const diffDays = diff / (24 * 60 * 60 * 1000)
+
+  // 如果是未来的日期，直接返回年月日
+  if (diffDays < 0) {
+    return dayjs(target).format('YYYY-MM-DD')
+  }
+
+  if (diffDays === 0) {
+    return '今天'
+  }
+  if (diffDays === 1) {
+    return '昨天'
+  }
+  if (diffDays === 2) {
+    return '前天'
+  }
+
+  return dayjs(target).format('YYYY-MM-DD')
+}
+// 千分位
+export const formatNumber = (num: number) => {
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+}

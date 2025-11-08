@@ -1,5 +1,10 @@
+import { addBillApi } from '@/api/bills'
 import { tabBar } from '@/pages.json'
+import { useBillsStore } from '@/store/bills'
+import { useHomeStore } from '@/store/home'
+import { showToast } from '@/utils/globalToast'
 import { httpGet } from '@/utils/http'
+import dayjs from 'dayjs'
 
 export interface ITag {
   id: number
@@ -57,7 +62,13 @@ export const useTabbar = (handleAdd: () => void) => {
 /**
  * 增加账单能力
  */
-export const useAddBill = (show: globalThis.Ref<boolean, boolean>) => {
+export const useAddBill = (
+  show: globalThis.Ref<boolean, boolean>,
+  date: globalThis.Ref<number, number>,
+) => {
+  const billsStore = useBillsStore()
+  const homeStore = useHomeStore()
+
   const tags = ref<ITag[]>([])
   const currentType = ref<IAccountingTypeEnum>(IAccountingTypeEnum.expense)
   const useTags = computed(() => {
@@ -72,29 +83,48 @@ export const useAddBill = (show: globalThis.Ref<boolean, boolean>) => {
   })
 
   const activeTagId = ref()
-  const price = ref(0)
-  const date = ref(new Date().getTime())
-
+  const price = ref()
+  const remark = ref()
   const handleSwitchTag = (id: number) => {
     activeTagId.value = id
   }
   const handleCloseAddBill = () => {
     show.value = false
+    price.value = undefined
+    remark.value = ''
+    activeTagId.value = undefined
+    date.value = new Date().getTime()
+    currentType.value = IAccountingTypeEnum.expense
   }
   const handleSubmitAddBill = () => {
-    console.log(activeTagId.value)
+    addBillApi({
+      price: price.value,
+      date: dayjs(date.value).format('YYYY-MM-DD HH:mm:ss'),
+      categoryId: activeTagId.value,
+      remark: remark.value,
+    }).then((res) => {
+      if (res.success) {
+        showToast().success('添加成功')
+        handleCloseAddBill()
+        billsStore.onSearch()
+        homeStore.onSearch()
+      }
+    })
   }
 
-  onShow(() => {
-    httpGet<ITag[]>('category').then((res) => {
-      tags.value = res.data
-    })
+  onMounted(() => {
+    if (show) {
+      httpGet<ITag[]>('category').then((res) => {
+        tags.value = res.data
+      })
+    }
   })
 
   return {
     useTags,
     activeTagId,
     price,
+    remark,
     date,
     currentType,
     handleCloseAddBill,

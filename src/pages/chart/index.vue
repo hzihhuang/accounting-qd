@@ -11,51 +11,22 @@
 <script setup lang="ts">
 import Segmented from '@/components/Segmented.vue'
 import { TimeTypeEnum, TransactionTypeEnum } from '@/enums/global'
-import { getWeeks, getMonths, getYears } from './utils'
 import Bubbles from '@/components/Bubbles.vue'
 import ChartBar from '@/components/ChartBar.vue'
 import ChartLine from '@/components/ChartLine.vue'
 import ChartPic from '@/components/ChartPic.vue'
+import StatusBar from '@/components/StatusBar.vue'
+import { useChartStore } from '@/store/chart'
+import { storeToRefs } from 'pinia'
 
-const statusBarHeightRef = ref(0)
-onShow(() => {
-  if (!(process.env.UNI_PLATFORM === 'h5')) {
-    const { statusBarHeight } = uni.getSystemInfoSync()
-    statusBarHeightRef.value = statusBarHeight
-  }
-})
-
-// 收入 or 支出
-const type = ref<TransactionTypeEnum>(TransactionTypeEnum.Expense)
-// 周月年
-const timeType = ref<TimeTypeEnum>(TimeTypeEnum.Week)
-
-// 周期
-
-const filterList = computed(() => {
-  switch (timeType.value) {
-    case TimeTypeEnum.Week:
-      return getWeeks()
-    case TimeTypeEnum.Month:
-      return getMonths()
-    case TimeTypeEnum.Year:
-      return getYears()
-    default:
-      return getWeeks()
-  }
-})
-const bubbleType = ref(filterList.value[0].value)
-watch(filterList, (v) => {
-  bubbleType.value = v[0].value
-})
+const { type, timeType, list, curActive, lineData, picData, barData } = storeToRefs(useChartStore())
+const { onSearch } = useChartStore()
 </script>
+
 <template>
-  <view
-    class="page-header pt-24 pb-24"
-    :style="{ paddingTop: `${statusBarHeightRef === 0 ? '24rpx' : `${statusBarHeightRef}px`}` }"
-  >
-    <view>消费统计</view>
-    <view class="flex gap-20 px-24 mt-30">
+  <view class="page-header">
+    <StatusBar>消费统计</StatusBar>
+    <view class="flex gap-20 mt-30 px-24">
       <Segmented
         class="flex-1"
         v-model="type"
@@ -74,38 +45,34 @@ watch(filterList, (v) => {
         ]"
       />
     </view>
-    <Bubbles class="mt-40 mb-20 px-24" v-model="bubbleType" :list="filterList" />
+    <Bubbles
+      class="mt-20 mb-20 px-24"
+      @change="
+        (i) => {
+          onSearch(i.start, i.end)
+        }
+      "
+      v-model="curActive"
+      :list="list"
+    />
   </view>
   <view class="flex flex-col gap-40 p-24">
-    <view class="chart-overview-card">
-      <view class="fs-28 opacity-90">本周总支出</view>
-      <view class="my-20 fs-56 fw-600">¥2,750</view>
-      <view class="fs-28 opacity-90">较上周减少12.5%</view>
-    </view>
     <view class="chart-card">
       <view class="fs-32 fw-600 color-[#2D3748] mb-30 px-40">趋势分析</view>
-      <ChartLine />
+      <ChartLine v-model:timeType="timeType" v-model="lineData" />
     </view>
     <view class="chart-card">
       <view class="fs-32 fw-600 color-[#2D3748] mb-30 px-40">分类占比</view>
-      <ChartPic />
+      <ChartPic v-model="picData" />
     </view>
     <view class="chart-card">
       <view class="fs-32 fw-600 color-[#2D3748] mb-30 px-40">金额排行</view>
-      <ChartBar />
+      <ChartBar v-model="barData" />
     </view>
   </view>
 </template>
 
 <style lang="scss">
-.chart-overview-card {
-  padding: 40rpx;
-  color: white;
-  background: linear-gradient(135deg, #4299e1, #63b3ed);
-  border-radius: 40rpx;
-  box-shadow: 0 8rpx 32rpx rgba(66, 153, 225, 0.2);
-}
-
 .chart-card {
   height: auto;
   padding: 40rpx 12rpx;

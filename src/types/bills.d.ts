@@ -14,3 +14,10 @@ export interface BillInter {
     type: 'income' | 'expense'
   }
 }
+
+export interface AddBillBody {
+  price: number
+  remark?: string
+  date: string
+  categoryId?: number
+}

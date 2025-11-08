@@ -38,7 +38,7 @@ const handleLogout = () => {
     <view class="my-userID">ID: {{ userInfo.id }}</view>
   </view>
   <view class="my-menu-list">
-    <view class="my-menu-group">
+    <!-- <view class="my-menu-group">
       <view class="my-menu-item">
         <text class="fs-40 i-carbon-calculator"></text>
         <text class="flex-1">预算管理</text>
@@ -54,7 +54,7 @@ const handleLogout = () => {
         <text class="flex-1">通用设置</text>
         <text class="i-carbon-chevron-right" />
       </view>
-    </view>
+    </view> -->
     <view class="my-menu-group">
       <view class="my-menu-item logout" @click="handleLogout">
         <text class="fs-40 i-carbon-logout" />

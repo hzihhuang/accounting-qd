@@ -52,7 +52,7 @@ const [totalIncome, totalExpense] = computed(() => {
           <image :src="item.category.img" class="w-full h-full" />
         </view>
         <view class="flex-1 flex items-center justify-between bill-item-right color-gray-5">
-          <view class="fs-24">{{ item.remark ?? item.category.name }}</view>
+          <view class="fs-24">{{ item.remark || item.category.name }}</view>
           <view class="fs-28">{{ item.price }}</view>
         </view>
       </view>

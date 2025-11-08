@@ -1,9 +1,17 @@
 <script lang="ts" generic="T" setup>
 const value = defineModel<T>()
+const emits = defineEmits<{
+  change: [
+    item: {
+      label: string
+      start: string
+      end: string
+    },
+  ]
+}>()
 const { list } = defineProps<{
   list: {
-    label: string
-    value: T
+    label: T
     start: string
     end: string
   }[]
@@ -13,10 +21,15 @@ const { list } = defineProps<{
 <template>
   <view class="flex gap-16 overflow-auto">
     <view
-      :class="`bubble-item ${i.value === value ? 'active' : ''}`"
-      @click="value = i.value"
+      :class="`bubble-item ${i.label === value ? 'active' : ''}`"
+      @click="
+        () => {
+          value = i.label
+          emits('change', i as any)
+        }
+      "
       v-for="i in list"
-      :key="i.value as any"
+      :key="i.label as any"
     >
       {{ i.label }}
     </view>

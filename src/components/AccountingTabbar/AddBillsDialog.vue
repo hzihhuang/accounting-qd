@@ -15,19 +15,20 @@ const list = [
 ]
 
 const show = defineModel<boolean>()
+
+const { DEFAULT_DATE, billDate, cacheDate, showDate, handleDateChange } = useBillDate()
+
 // 添加账单功能
 const {
   activeTagId,
   price,
-  date,
+  remark,
   useTags,
   currentType,
   handleCloseAddBill,
   handleSubmitAddBill,
   handleSwitchTag,
-} = useAddBill(show)
-
-const { DEFAULT_DATE, billDate, cacheDate, showDate, handleDateChange } = useBillDate()
+} = useAddBill(show, billDate)
 </script>
 
 <template>
@@ -49,10 +50,19 @@ const { DEFAULT_DATE, billDate, cacheDate, showDate, handleDateChange } = useBil
         type="number"
         placeholder="¥0.00"
         inputmode="numeric"
+        v-model="price"
       />
-      <wd-button size="large" :round="false" @click="handleSubmitAddBill">保存</wd-button>
+      <wd-input placeholder="备注" v-model="remark" />
       <wd-button
-        custom-class="flex items-center gap-8 w-160"
+        size="large"
+        :round="false"
+        :disabled="!price || !activeTagId"
+        @click="handleSubmitAddBill"
+      >
+        保存
+      </wd-button>
+      <wd-button
+        custom-class="flex items-center gap-8 w-180"
         plain
         size="small"
         icon="time-filled"
